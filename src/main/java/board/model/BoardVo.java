@@ -15,6 +15,15 @@ public class BoardVo {
 	private String writer; // 작성자
 	private Date reg_datetime; // 날짜시간
 
+	
+	public BoardVo() {}
+	
+	public BoardVo(String writer, String title) {
+		this.writer = writer;
+		this.title = title;
+	}
+	
+	
 	public int getBcode() {
 		return bcode;
 	}

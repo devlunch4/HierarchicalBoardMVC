@@ -34,10 +34,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<br>
 		<hr>
 
-		<input type="button"
-			id="addBoardBtn" name="addBoardBtn" value="게시판생성" onclick="${cp }/moveboardCreate">
+		<input type="text" id="addBoardName" name="addBoardName"
+			placeholder="추가할 게시판 이름 입력"> <input type="button"
+			id="addBoardBtn" name="addBoardBtn" value="게시판생성" onclick="/boardCreate">
 		<hr>
-
+		조회된 게시판 출력<br> FOR>>>>> 조건 BCODE == ORIGINNO 이고
+		GROUPORD =0 GROUPLAYER=0 <br> <input type="button"
+			id="bcode${i.bcode }" name="bcode ${i.bcode }" value="${i.title }"
+			onclick="#"> <br> select * from board
+	</form>
 </body>
 </html>
 
