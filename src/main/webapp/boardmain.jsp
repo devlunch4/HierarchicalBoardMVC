@@ -38,6 +38,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<input type="button" value="로그 아웃"
 		onClick="location.href='${cp }/logout'">
 	<br>
+	<hr>
+	<br><input type="text" value="게시판 추가"
+		onClick="#">
+	<br>
+	조회된 게시판 
+	BCODE == ORIGINNO 이고 GROUPORD =0 GROUPLAYER=0 인것
+	SELECT 
+	
+	
+	/select id="selectBoardList" parameterType="com.ga.board.service.BoardVO" resultType="com.ga.board.service.BoardVO">
+        select * from board
+    /select>
+	
 </body>
 </html>
 

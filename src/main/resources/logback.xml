@@ -30,6 +30,9 @@
 	<logger name="user" level="DEBUG">
 		<appender-ref ref="STDOUT" />
 	</logger>
+		<logger name="board" level="DEBUG">
+		<appender-ref ref="STDOUT" />
+	</logger>
 
 	<!-- <root level="debug"> -->
 	<!-- <appender-ref ref="STDOUT" /> -->

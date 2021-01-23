@@ -11,10 +11,9 @@ DROP TABLE HFILE;
 DROP TABLE HREPLY;
 DROP TABLE HBOARD;
 
---DB 생성
+--DB 생성/* 사용자 */
 /* 사용자 */
---기존 생성된 DB users 활용
-CREATE TABLE xusersx (
+CREATE TABLE users (
 	userid VARCHAR2(255), /* 사용자계정 */
 	pass VARCHAR2(255) /* 비밀번호 */
 );
@@ -28,27 +27,19 @@ COMMENT ON COLUMN users.pass IS '비밀번호';
 /* 게시판및게시글 */
 CREATE TABLE hboard (
 	bcode INTEGER NOT NULL, /* 게시판번호 */
-	title VARCHAR2(255), /* 제목 */
-	content VARCHAR2(255), /* 내용 */
-	writer VARCHAR2(255), /* 작성자 */
-	reg_datetime DATE, /* 작성일 */
 	originNo INTEGER, /* 원글번호 */
 	groupOrd INTEGER, /* 원글순서 */
 	groupLayer INTEGER, /* 답글계층 */
-	active INTEGER NOT NULL /* 활성 */
+	active INTEGER NOT NULL, /* 활성 */
+	title VARCHAR2(255), /* 제목 */
+	content VARCHAR2(255), /* 내용 */
+	writer VARCHAR2(255), /* 작성자 */
+	reg_datetime DATE /* 작성일 */
 );
 
 COMMENT ON TABLE hboard IS '게시판및게시글';
 
 COMMENT ON COLUMN hboard.bcode IS '원글번호';
-
-COMMENT ON COLUMN hboard.title IS '제목';
-
-COMMENT ON COLUMN hboard.content IS '내용';
-
-COMMENT ON COLUMN hboard.writer IS '작성자';
-
-COMMENT ON COLUMN hboard.reg_datetime IS '작서일';
 
 COMMENT ON COLUMN hboard.originNo IS '그룹';
 
@@ -57,6 +48,14 @@ COMMENT ON COLUMN hboard.groupOrd IS '그룹순서';
 COMMENT ON COLUMN hboard.groupLayer IS '그룹계층';
 
 COMMENT ON COLUMN hboard.active IS '0/1';
+
+COMMENT ON COLUMN hboard.title IS '제목';
+
+COMMENT ON COLUMN hboard.content IS '내용';
+
+COMMENT ON COLUMN hboard.writer IS '작성자';
+
+COMMENT ON COLUMN hboard.reg_datetime IS '작서일';
 
 CREATE UNIQUE INDEX PK_hboard
 	ON hboard (
@@ -74,13 +73,13 @@ ALTER TABLE hboard
 CREATE TABLE hreply (
 	rcode INTEGER NOT NULL, /* 댓글번호 */
 	bcode INTEGER NOT NULL, /* 게시글판번호 */
-	content VARCHAR2(255), /* 내용 */
-	writer VARCHAR2(255), /* 작성자 */
-	reg_datetime DATE, /* 작성일 */
 	originNo INTEGER, /* 원글번호 */
 	groupOrd INTEGER, /* 그룹순서 */
 	groupLayer INTEGER, /* 답글계층 */
-	active INTEGER NOT NULL /* 활성 */
+	active INTEGER NOT NULL, /* 활성 */
+	content VARCHAR2(255), /* 내용 */
+	writer VARCHAR2(255), /* 작성자 */
+	reg_datetime DATE /* 작성일 */
 );
 
 COMMENT ON TABLE hreply IS '댓글';
@@ -89,12 +88,6 @@ COMMENT ON COLUMN hreply.rcode IS '댓글번호';
 
 COMMENT ON COLUMN hreply.bcode IS '원글번호';
 
-COMMENT ON COLUMN hreply.content IS '내용';
-
-COMMENT ON COLUMN hreply.writer IS '작성자';
-
-COMMENT ON COLUMN hreply.reg_datetime IS '작성일';
-
 COMMENT ON COLUMN hreply.originNo IS '그룹';
 
 COMMENT ON COLUMN hreply.groupOrd IS '그룹순서';
@@ -102,6 +95,12 @@ COMMENT ON COLUMN hreply.groupOrd IS '그룹순서';
 COMMENT ON COLUMN hreply.groupLayer IS '그룹계층';
 
 COMMENT ON COLUMN hreply.active IS '0/1';
+
+COMMENT ON COLUMN hreply.content IS '내용';
+
+COMMENT ON COLUMN hreply.writer IS '작성자';
+
+COMMENT ON COLUMN hreply.reg_datetime IS '작성일';
 
 CREATE UNIQUE INDEX PK_hreply
 	ON hreply (
@@ -119,13 +118,14 @@ ALTER TABLE hreply
 CREATE TABLE hfile (
 	fcode INTEGER NOT NULL, /* 파일번호 */
 	bcode INTEGER NOT NULL, /* 게시글번호 */
-	fname VARCHAR2(255), /* 파일명 */
-	writer VARCHAR2(255), /* 작성자 */
-	reg_datetime DATE, /* 작성일 */
 	originNo INTEGER, /* 원글 */
 	groupOrd INTEGER, /* 원글 순서 */
 	groupLayer INTEGER, /* 답글계층 */
-	active INTEGER NOT NULL /* 활성 */
+	active INTEGER NOT NULL, /* 활성 */
+	fname VARCHAR2(255), /* 파일명 */
+	fextension VARCHAR2(255), /* 파일확장자 */
+	writer VARCHAR2(255), /* 작성자 */
+	reg_datetime DATE /* 작성일 */
 );
 
 COMMENT ON TABLE hfile IS '파일';
@@ -134,12 +134,6 @@ COMMENT ON COLUMN hfile.fcode IS '파일번호';
 
 COMMENT ON COLUMN hfile.bcode IS '원글번호';
 
-COMMENT ON COLUMN hfile.fname IS '제목';
-
-COMMENT ON COLUMN hfile.writer IS '작성자';
-
-COMMENT ON COLUMN hfile.reg_datetime IS '작성일';
-
 COMMENT ON COLUMN hfile.originNo IS '그룹';
 
 COMMENT ON COLUMN hfile.groupOrd IS '그룹순서';
@@ -147,6 +141,14 @@ COMMENT ON COLUMN hfile.groupOrd IS '그룹순서';
 COMMENT ON COLUMN hfile.groupLayer IS '그룹계층';
 
 COMMENT ON COLUMN hfile.active IS '0/1';
+
+COMMENT ON COLUMN hfile.fname IS '제목';
+
+COMMENT ON COLUMN hfile.fextension IS '파일확장자';
+
+COMMENT ON COLUMN hfile.writer IS '작성자';
+
+COMMENT ON COLUMN hfile.reg_datetime IS '작성일';
 
 CREATE UNIQUE INDEX PK_hfile
 	ON hfile (
