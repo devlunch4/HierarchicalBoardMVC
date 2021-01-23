@@ -21,36 +21,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<form id="frm">
 		<input type="hidden" id="userid" name="userid"
 			value="${S_USER.userid }">
-	</form>
-	<!-- 개발 확인용 코드 추후 삭제 요망 시작 -->
-	<br> 추후 삭제 세션 객체 <br>
-	S_USER값 ${S_USER }
-	<br>
-	userid 값 not session : ${userid }
-	<!-- 개발 확인용 코드 추후 삭제 요망 끝 -->
 
-	<h1>게시판 진입 완료</h1>
-	로그인 아이디 : ${S_USER.userid }
-	<br> 로그인 시각 : ${logintime }
-	<br>
-	<br>
-	<input type="button" value="게시글 보기">
-	<input type="button" value="로그 아웃"
-		onClick="location.href='${cp }/logout'">
-	<br>
-	<hr>
-	<br><input type="text" value="게시판 추가"
-		onClick="#">
-	<br>
-	조회된 게시판 
-	BCODE == ORIGINNO 이고 GROUPORD =0 GROUPLAYER=0 인것
-	SELECT 
-	
-	
-	/select id="selectBoardList" parameterType="com.ga.board.service.BoardVO" resultType="com.ga.board.service.BoardVO">
-        select * from board
-    /select>
-	
+		<!-- 개발 확인용 코드 추후 삭제 요망 시작 -->
+		<br> 추후 삭제 세션 객체 <br> S_USER값 ${S_USER } <br> userid 값
+		not session : ${userid }
+		<!-- 개발 확인용 코드 추후 삭제 요망 끝 -->
+
+		<h1>게시판 진입 완료</h1>
+		로그인 아이디 : ${S_USER.userid } <br> 로그인 시각 : ${logintime } <br>
+		<br> <input type="button" value="게시글 보기"> <input
+			type="button" value="로그 아웃" onClick="location.href='${cp }/logout'">
+		<br>
+		<hr>
+
+		<input type="text" id="addBoardName" name="addBoardName"
+			placeholder="추가할 게시판 이름 입력"> <input type="button"
+			id="addBoardBtn" name="addBoardBtn" value="게시판생성" onclick="/boardCreate">
+		<hr>
+		조회된 게시판 출력<br> FOR>>>>> 조건 BCODE == ORIGINNO 이고
+		GROUPORD =0 GROUPLAYER=0 <br> <input type="button"
+			id="bcode${i.bcode }" name="bcode ${i.bcode }" value="${i.title }"
+			onclick="#"> <br> select * from board
+	</form>
 </body>
 </html>
 

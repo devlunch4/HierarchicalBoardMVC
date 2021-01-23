@@ -11,6 +11,10 @@
 			alias="userVo" />
 		<typeAlias type="common.model.PageVo"
 			alias="pageVo" />
+		<typeAlias type="board.model.BoardVo" alias="boardVo"/>
+		<typeAlias type="board.model.FileVo" alias="fileVo"/>
+		<typeAlias type="board.model.replyVo" alias="replyVo"/>
+			
 	</typeAliases>
 
 	<environments default="development">
@@ -29,6 +33,7 @@
 
 	<mappers>
 		<mapper resource="sql/config/mybatis/mapper/users.xml" />
+		<mapper resource="sql/config/mybatis/mapper/board.xml" />
 	</mappers>
 
 </configuration>
