@@ -13,7 +13,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-<title>게시판 생성</title>
+<title>메인</title>
 
 <!-- Font Awesome Icons -->
 <link rel="stylesheet"
@@ -39,12 +39,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<div class="container-fluid">
 						<div class="row md-2">
 							<div class="col-sm-6">
-								<h1>게시판 생성</h1>
+								<h1>메인</h1>
 							</div>
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-right">
-									<li class="breadcrumb-item">게시판</li>
-									<li class="breadcrumb-item">생성</li>
+									<li class="breadcrumb-item">메인</li>
+									<li class="breadcrumb-item">화면</li>
 								</ol>
 							</div>
 						</div>
@@ -56,23 +56,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<div class="card">
 						<%-- 	<!-- card header -->
 						<%@ include file="/common/cardheadersearchbar.jsp"%> --%>
+
 						<div class="card-body" style="text-align: left;">
-							<div>${S_USER.userid }님 <br>게시판 현황을 확인할수 있습니다.</div>
-							<hr>
+							<div>
+								${S_USER.userid } 님 반갑습니다.<br>
+								접속 시간은 ${logintime } 입니다.<br>
+								화면이동은 상단바, 또는 좌측 상단을 눌러 왼쪽바로 이동해주세요~
+							</div>
+							<!-- <div class="row">
+								<div class="col-sm-12">
+									<table class="table table-bordered">
+										<tbody>
+											<tr>
+												<th>수행</th>
+												<th>완료</th>
+											</tr>
 
-							<!-- add board -->
-							<input type="text" id="addBoardName" name="addBoardName"
-								placeholder="추가할 게시판 이름 입력"> <input type="button"
-								id="addBoardBtn" name="addBoardBtn" value="게시판 생성"
-								onclick="/boardCreate">
-							<hr>
-
-							<!-- read active/nonactive board -->
-							조회된 게시판 출력<br> FOR>>>>> 조건 BCODE == ORIGINNO 이고 GROUPORD =0
-							GROUPLAYER=0 <br> <input type="button" id="bcode${i.bcode }"
-								name="bcode ${i.bcode }" value="${i.title }" onclick="#">
-							<br> select * from board
-
+										</tbody>
+									</table>
+								</div>
+								col-sm-12
+							</div> -->
+							<!-- row -->
 						</div>
 						<!-- card-body -->
 						<!-- card-footer -->

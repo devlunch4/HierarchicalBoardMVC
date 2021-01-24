@@ -7,12 +7,10 @@
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
 					href="#"><i class="fas fa-bars"></i></a></li>
-				<li class="nav-item d-none d-sm-inline-block"><a href="${cp }/allUser"
+				<li class="nav-item d-none d-sm-inline-block"><a href="${cp }/main.jsp"
 					class="nav-link">HOME</a></li>
-				<li class="nav-item d-none d-sm-inline-block"><a href="${cp }/allUser"
-					class="nav-link">회원 한페이지로 보기</a></li>
-				<li class="nav-item d-none d-sm-inline-block"><a href="${cp }/pagingUser"
-					class="nav-link">회원 페이지별 보기</a></li>
+				<li class="nav-item d-none d-sm-inline-block"><a href="${cp }/boardCreateMove"
+					class="nav-link">게시판 생성</a></li>
 			</ul>
 
 			<!-- SEARCH FORM -->

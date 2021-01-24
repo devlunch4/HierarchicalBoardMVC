@@ -57,7 +57,7 @@ public class LoginController extends HttpServlet {
 //			req.setAttribute("pass", pass);
 //			req.getRequestDispatcher("/pagingUser").forward(req, resp);
 //			resp.sendRedirect(req.getContextPath() + "/boardmain.jsp");
-			req.getRequestDispatcher("/boardmain.jsp").forward(req, resp);
+			req.getRequestDispatcher("/main.jsp").forward(req, resp);
 //			resp.sendRedirect(req.getContextPath() + "/boardmain.jsp");
 
 		}

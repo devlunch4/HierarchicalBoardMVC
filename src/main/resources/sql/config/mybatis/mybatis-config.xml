@@ -13,7 +13,7 @@
 			alias="pageVo" />
 		<typeAlias type="board.model.BoardVo" alias="boardVo"/>
 		<typeAlias type="board.model.FileVo" alias="fileVo"/>
-		<typeAlias type="board.model.replyVo" alias="replyVo"/>
+		<typeAlias type="board.model.ReplyVo" alias="replyVo"/>
 	</typeAliases>
 
 	<environments default="development">
@@ -24,8 +24,8 @@
 					value="oracle.jdbc.driver.OracleDriver" />
 				<property name="url"
 					value="jdbc:oracle:thin:@localhost:1521:xe" />
-				<property name="username" value="PC20" />
-				<property name="password" value="java" />
+				<property name="username" value="PC01" />
+				<property name="password" value="oracle" />
 			</dataSource>
 		</environment>
 	</environments>
