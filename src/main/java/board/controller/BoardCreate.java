@@ -1,7 +1,6 @@
 package board.controller;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import board.model.BoardVo;
-
+//임시
 @WebServlet("/boardCreate")
 public class BoardCreate extends HttpServlet {
 

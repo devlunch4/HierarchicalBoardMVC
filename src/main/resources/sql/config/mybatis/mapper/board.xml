@@ -4,6 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board">
+	<!-- 게시판 조회 -->
+	<select id="selectAllBoard" resultType="boardVo">
+		SELECT * FROM hboard
+		WHERE bcode = originno and groupord = 0 and grouplayer = 0
+	</select>
+
 
 	<!-- 게시판 등록 -->
 	<insert id="boardCreate" parameterType="boardVo">
@@ -36,11 +42,11 @@
 
 
 	<!-- 게시판 전체 조회 -->
-	<select id="selectAllBoard" resultType="boardVo">
+<!-- 	<select id="selectAllBoard" resultType="boardVo">
 		SELECT *
 		FROM users ORDER
 		BY userid
-	</select>
+	</select> -->
 
 	<!-- 선택한 게시판 조회 -->
 	<select id="selectOneBoard" resultType="boardVo"
