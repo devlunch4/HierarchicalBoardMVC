@@ -25,7 +25,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script src="<c:url value="/js/jquery.min.js" />"></script>
 <!-- summernote script -->
-		<%@ include file="/common/summerNoteScript.jsp"%>
+<%@ include file="/common/summerNoteScript.jsp"%>
+
+<script type="text/javascript">
+	$(function() {
+		//글쓰기 버튼 클릭시
+		
+		
+		$("#writeBtn").on("click", function() {
+			
+			$("#frm").attr("method", "get");
+			$("#frm").attr("action", "${cp }/boardWrite");
+			$("#frm").submit();
+		})
+
+	});
+</script>
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -39,13 +54,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- 사용자 아이디 값 -->
 			<input type="hidden" id="userid" name="userid"
 				value="${S_USER.userid }" />
-			<!-- 게시판 조회/수정시 사용 bcode, title, active-->
-			<input type="hidden" id="bcode" name="bcode" value="" />
-			<input type="hidden" id="originno" name="originno" value="" />
-			<input type="hidden" id="groupord" name="groupord" value="" />
-			<input type="hidden" id="grouplayer" name="grouplayer" value="" />
-			<input type="hidden" id="writer" name="writer" value="" />
-			 <input
+
+			<!-- 게시판 조회/수정시 사용 bcode, title, active 글쓰기 에서 가져옴-->
+			<input type="hidden" id="bcode" name="bcode" value="${bcode }" /> <input
+				type="hidden" id="originno" name="originno" value="" /> <input
+				type="hidden" id="groupord" name="groupord" value="" /> <input
+				type="hidden" id="grouplayer" name="grouplayer" value="" /> <input
+				type="hidden" id="writer" name="writer" value="" /> <input
 				type="hidden" id="title" name="title" value="" /> <input
 				type="hidden" id="active" name="active" value="" />
 			<!-- 생성 시 사용 -->
@@ -93,11 +108,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												<th>작성일</th>
 												<!-- yyyy-MM-dd  -->
 											</tr>
-											<c:forEach items="${oneList }" var="oneList" varStatus="loop">
-												<tr class="oneList" data-userid="${oneList.bcode }">
-													<td>${oneList.title }</td>
-													<td>${oneList.writer }</td>
-													<td><fmt:formatDate value="${oneList.reg_datetime }"
+											<c:forEach items="${oneBoardList }" var="oneBoardList"
+												varStatus="loop">
+												<tr class="oneBoardList"
+													data-groupord="${oneBoardList.groupord }">
+													<td>${oneBoardList.groupord }</td>
+													<td>${oneBoardList.title }</td>
+													<td>${oneBoardList.writer }</td>
+													<td><fmt:formatDate
+															value="${oneBoardList.reg_datetime }"
 															pattern="yyyy-MM-dd" /></td>
 												</tr>
 											</c:forEach>

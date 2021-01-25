@@ -26,15 +26,21 @@ public class BoardOneSelect extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.debug("IN doGet()");
-		//선택된 게시판의 bcode == 게시판 번호
+		// 선택된 게시판의 bcode == 게시판 번호
 		String bcode = req.getParameter("bcode");
-		logger.debug("bcode값: {}", bcode);
+		int ibcode = Integer.parseInt(bcode);
+
 		// 사이드바를 위한 모든 게시판 조회
 		List<BoardVo> boardList = boardService.selectAllBoard();
 		req.setAttribute("boardList", boardList);
 		logger.debug("조회된 전체 list 목록 수 {}", boardList.size());
-		
 
+		// 선택된 게시판의 게시글(답글들) 조회
+		List<BoardVo> oneBoardList = boardService.selectOneBoard(ibcode);
+
+		//전송될 객설정
+		req.setAttribute("oneBoardList", oneBoardList);
+		req.setAttribute("bcode", bcode);
 		req.getRequestDispatcher("/boardOneSelect.jsp").forward(req, resp);
 	}
 }

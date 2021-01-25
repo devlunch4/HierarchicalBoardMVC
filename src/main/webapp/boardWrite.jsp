@@ -27,15 +27,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- summernote script -->
 <%@ include file="/common/summerNoteScript.jsp"%>
 <script>
-		$(document).ready(function() {
-			$('#summernote').summernote();
-		});
+	$(document).ready(function() {
+		$('#summernote').summernote();
+	});
 </script>
 <script type="text/javascript">
 	$(function() {
 
 		//글 작성완료 클릭시
-		$("#addBoardBtn").on(
+		$("#writeBtn").on(
 				"click",
 				function() {
 					var userid = $("#userid").val();
@@ -52,13 +52,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					$("#frm").attr("action", "${cp }/boardCreateMove");
 					$("#frm").submit();
 				});
-		
-	
-		
+
 	});
 </script>
-
-
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -74,10 +70,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<input type="hidden" id="userid" name="userid"
 				value="${S_USER.userid }" />
 			<!-- 게시판 조회/수정시 사용 bcode, title, active-->
-			<input type="hidden" id="bcode" name="bcode" value="" /> <input
-				type="hidden" id="title" name="title" value="" /> <input
-				type="hidden" id="context" name="context" value="" /><input
-				type="hidden" id="active" name="active" value="" />
+			<input type="hidden" id="parentBcode" name="parentBcode"
+				value="${parentBcode }" /> <input type="hidden" id="bcode"
+				name="bcode" value="" /> <input type="hidden" id="title"
+				name="title" value="" /> <input type="hidden" id="context"
+				name="context" value="" /><input type="hidden" id="active"
+				name="active" value="" />
 			<!-- 생성 시 사용 -->
 			<input type="hidden" id="addBName" name="addBName" value="" />
 		</form>
@@ -112,14 +110,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<br>글작성을 할수 있습니다.
 							</div>
 							<hr>
-
 							<div class="row">
 								<div class="col-sm-12">
 									<!-- summernote 추가 -->
+									제목 : <input type="text" id="addtitle" name="addtitle" value="" />
+									<br> <br>
 									<div id="summernote">
 										<p>Hello Summernote</p>
 									</div>
-
+									<div style="text-align: right;">
+										<button type="button" class="btn btn-primary" id="writeBtn"
+											name="writeBtn">글작성완료</button>
+									</div>
 								</div>
 								<!-- col-sm-12 -->
 							</div>

@@ -32,6 +32,7 @@ public class BoardDao implements BoardDaoI {
 		return addBoardCnt;
 	}
 
+	// 게시판 이름/활성상태 수정
 	@Override
 	public int updateBoardAct(BoardVo boardVo) {
 		SqlSession sqlSession = MybatisUtil.getSqlSession();
@@ -45,6 +46,14 @@ public class BoardDao implements BoardDaoI {
 		return updateBoardActCnt;
 	}
 
-	// 게시판 수정/활성수정
+	// 하나의 게시판 조회
+	@Override
+	public List<BoardVo> selectOneBoard(int bcode) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		List<BoardVo> oneBoardList = sqlSession.selectList("board.selectOneBoard", bcode);
+		sqlSession.close();
+		return oneBoardList;
+
+	}
 
 }

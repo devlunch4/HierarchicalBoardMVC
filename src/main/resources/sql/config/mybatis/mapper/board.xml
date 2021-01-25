@@ -11,9 +11,6 @@
 	</select>
 
 	<!-- 게시판 등록 -->
-	<!-- INSERT INTO hboard ( bcode, originno, groupord, grouplayer, active, 
-		title, content, writer, reg_datetime ) VALUES ( seq_hboard.NEXTVAL, seq_hboard.NEXTVAL, 
-		0, 0, 0, '1번글', '', '게시판생성자', SYSDATE ); -->
 	<insert id="addBoard" parameterType="boardVo">
 		<!-- INSERT INTO hboard ( bcode, originno, groupord, grouplayer, active, 
 			title, content, writer, reg_datetime ) VALUES ( seq_hboard.NEXTVAL, seq_hboard.NEXTVAL, 
@@ -42,24 +39,30 @@
 	</insert>
 
 
-	<!--게시판명, 활성상태 수정 -->
+	<!--게시판 이름, 활성상태 수정 -->
 	<update id="updateBoardAct" parameterType="boardVo">
-		UPDATE hBoard SET title =#{title}, active =#{active} WHERE bcode=#{bcode}
+		UPDATE hBoard SET
+		title =#{title}, active =#{active} WHERE bcode=#{bcode}
 	</update>
 
 
-
-
-
-
-	<!-- 선택한 게시판 조회 -->
+	<!-- 선택한 게시판 조회(게시판의 글 가져오기) -->
 	<select id="selectOneBoard" resultType="boardVo"
-		parameterType="String">
+		parameterType="int">
 		SELECT *
 		FROM
-		users
-		WHERE userid = #{value}
+		hboard
+		WHERE originno=
+		#{value} and groupord
+		!= 0 ORDER BY originno, groupord, grouplayer
 	</select>
+
+
+
+
+	<!-- -->
+	<!-- -->
+
 
 
 
