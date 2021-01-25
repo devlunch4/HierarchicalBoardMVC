@@ -58,15 +58,14 @@ public class LoginController extends HttpServlet {
 			HttpSession session = req.getSession();
 			session.setAttribute("S_USER", user);
 			session.setAttribute("logintime", logintime);
-			
+
 			req.setAttribute("userid", userid);
-			
+
 			// 조회된 게시판 리스트화
 			List<BoardVo> boardList = boardService.selectAllBoard();
 			req.setAttribute("boardList", boardList);
 			logger.debug("조회된 전체 list 목록 수 {}", boardList.size());
-			
-			
+
 //			req.setAttribute("pass", pass);
 //			req.getRequestDispatcher("/pagingUser").forward(req, resp);
 //			resp.sendRedirect(req.getContextPath() + "/boardmain.jsp");

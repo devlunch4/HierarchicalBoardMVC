@@ -46,7 +46,7 @@ public class BoardDao implements BoardDaoI {
 		return updateBoardActCnt;
 	}
 
-	// 하나의 게시판 조회
+	// 해당게시판의 글(답글개념) 가져오기
 	@Override
 	public List<BoardVo> selectOneBoard(int bcode) {
 		SqlSession sqlSession = MybatisUtil.getSqlSession();
@@ -56,4 +56,18 @@ public class BoardDao implements BoardDaoI {
 
 	}
 
+	//게시판 글 생성/추가
+	@Override
+	public int boardWrite(BoardVo boardVo) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		int boardWriteCnt = sqlSession.update("board.boardWrite", boardVo);
+		if (boardWriteCnt == 1) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return boardWriteCnt;
+	}
+	
 }

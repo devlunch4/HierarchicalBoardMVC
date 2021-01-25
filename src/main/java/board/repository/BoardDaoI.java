@@ -15,6 +15,10 @@ public interface BoardDaoI {
 	// 게시판 이름/활성상태 수정
 	int updateBoardAct(BoardVo boardVo);
 	
-	// 게시판 하나 조회
+	// 해당게시판의 글(답글개념) 가져오기
 	List<BoardVo> selectOneBoard(int bcode);
+	
+	
+	// 게시판 글 생성/추가
+	int boardWrite(BoardVo boardVo);
 }

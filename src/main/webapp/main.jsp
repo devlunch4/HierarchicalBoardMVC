@@ -24,10 +24,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 <!-- summernote script -->
-		<%@ include file="/common/summerNoteScript.jsp"%>
+<%@ include file="/common/summerNoteScript.jsp"%>
 
 </head>
 <body class="hold-transition sidebar-mini">
+	<input type="hidden" id="userid" name="userid"
+		value="${S_USER.userid }" />
+
 	<div class="wrapper">
 		<!-- Navbar -->
 		<%@ include file="/common/navi.jsp"%>
@@ -63,8 +66,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 						<div class="card-body" style="text-align: left;">
 							<div>
-								${S_USER.userid } 님 반갑습니다.<br>
-								접속 시간은 ${logintime } 입니다.<br>
+								${S_USER.userid } 님 반갑습니다.<br> 접속 시간은 ${logintime } 입니다.<br>
 								화면이동은 상단바, 또는 좌측 상단을 눌러 왼쪽바로 이동해주세요~
 							</div>
 							<!-- <div class="row">
@@ -96,6 +98,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<%@ include file="/common/mainfooter.jsp"%>
 	<!-- ./wrapper -->
 	<!-- REQUIRED SCRIPTS -->
-<%-- 	<%@ include file="/common/jqBootLte.jsp"%> --%>
+	<%-- 	<%@ include file="/common/jqBootLte.jsp"%> --%>
 </body>
 </html>

@@ -57,7 +57,30 @@
 		!= 0 ORDER BY originno, groupord, grouplayer
 	</select>
 
-
+	<!-- 글 등록 -->
+	<insert id="boardWrite" parameterType="boardVo">
+		INSERT INTO hboard (
+		bcode,
+		originno,
+		groupord,
+		grouplayer,
+		active,
+		title,
+		content,
+		writer,
+		reg_datetime
+		) VALUES (
+		seq_hboard.NEXTVAL,
+		#{originno},
+		#{groupord},
+		#{grouplayer},
+		0,
+		#{title},
+		#{content},
+		#{writer},
+		SYSDATE
+		)
+	</insert>
 
 
 	<!-- -->

@@ -30,6 +30,17 @@ public class BoardVo {
 		this.title = title;
 		this.active = active;
 	}
+	
+	// 글 등록시 사용
+	public BoardVo(int bcode, int originno, int groupord, int grouplayer, String writer, String title, String content) {
+		this.bcode = bcode;
+		this.originno = originno;
+		this.groupord = groupord;
+		this.grouplayer = grouplayer;
+		this.writer = writer;
+		this.title = title;
+		this.content = content;
+	}
 
 	public int getBcode() {
 		return bcode;

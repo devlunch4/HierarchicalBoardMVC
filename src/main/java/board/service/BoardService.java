@@ -33,4 +33,10 @@ public class BoardService implements BoardServiceI {
 		return boardDao.selectOneBoard(bcode);
 	}
 
+	@Override
+	public int boardWrite(BoardVo boardVo) {
+		// TODO Auto-generated method stub
+		return boardDao.boardWrite(boardVo);
+	}
+
 }
