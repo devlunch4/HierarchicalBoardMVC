@@ -64,3 +64,5 @@ INSERT INTO hboard (
     '게시판생성자',
     SYSDATE
 );
+
+commit;

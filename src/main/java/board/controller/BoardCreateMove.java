@@ -30,8 +30,12 @@ public class BoardCreateMove extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 
-		HttpSession session = req.getSession();
-		session.getAttribute("S_USER");
+		
+		
+		/*
+		 * HttpSession session = req.getSession(); session.getAttribute("S_USER");
+		 */
+		
 
 		// 조회된 게시판 리스트화
 		List<BoardVo> boardList =  boardService.selectAllBoard();
@@ -41,33 +45,32 @@ public class BoardCreateMove extends HttpServlet {
 
 	}
 
-	/*
-	 * // 버튼 반응시 수행하는 메소드
-	 * 
-	 * @Override protected void doPost(HttpServletRequest req, HttpServletResponse
-	 * resp) throws ServletException, IOException { logger.debug("In doPost()");
-	 * req.setCharacterEncoding("UTF-8"); resp.setCharacterEncoding("UTF-8");
-	 * 
-	 * //추가될 게시판의 이름 가져오기 String addBoardName = req.getParameter("addBoardName");
-	 * logger.debug("addBoardName 값 : {}",addBoardName);
-	 * 
-	 * 
-	 * 
-	 * HttpSession session = req.getSession(); session.getAttribute("S_USER");
-	 * 
-	 * 
-	 * req.getRequestDispatcher("/boardCreate.jsp").forward(req, resp);
-	 * 
-	 * // 기본값 가져오기 String userid = req.getParameter("userid"); // 입력 값 가져오기 String
-	 * addBoardName = req.getParameter("addBoardName");
-	 * 
-	 * BoardVo boardVo = new BoardVo(userid, addBoardName);
-	 * 
-	 * if (userid == "" || addBoardName == "") { req.setAttribute("boardVo",
-	 * boardVo); doGet(req, resp); }
-	 * 
-	 * // 게시판 생성 초기 입력
-	 * 
-	 * }
-	 */
+	
+//	  // 버튼 반응시 수행하는 메소드
+//	  
+//	  @Override protected void doPost(HttpServletRequest req, HttpServletResponse
+//	  resp) throws ServletException, IOException { logger.debug("In doPost()");
+//	  req.setCharacterEncoding("UTF-8"); resp.setCharacterEncoding("UTF-8");
+//	  
+//	  //추가될 게시판의 이름 가져오기 String addBoardName = req.getParameter("addBoardName");
+//	  logger.debug("addBoardName 값 : {}",addBoardName);
+//	  
+//	  
+//	  
+//	  HttpSession session = req.getSession(); session.getAttribute("S_USER");
+//	  
+//	  
+//	  req.getRequestDispatcher("/boardCreate.jsp").forward(req, resp);
+//	  
+//	  // 기본값 가져오기 String userid = req.getParameter("userid"); // 입력 값 가져오기 String
+//	  addBoardName = req.getParameter("addBoardName");
+//	  
+//	  BoardVo boardVo = new BoardVo(userid, addBoardName);
+//	  
+//	  if (userid == "" || addBoardName == "") { req.setAttribute("boardVo",
+//	  boardVo); doGet(req, resp); }
+//	  
+//	  // 게시판 생성 초기 입력
+//	  }
+	 
 }

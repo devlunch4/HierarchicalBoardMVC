@@ -32,31 +32,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				.on(
 						"click",
 						function() {
+							var userid = $("#userid").val();
+
 							var bcode = $(this).data("bcode");
 							var title = $("#title" + bcode).val();
 							var active = $("#activeSlt" + bcode).val();
+							
 							$("#bcode").val(bcode);
 							$("#title").val(title);
 							$("#active").val(active);
 							alert("게시판 수정 클릭후 hidden frm 설정 \n bcode 값: "
 									+ bcode + "\n title 값: " + title
-									+ "\n active 값: " + active);
-							//$("#frm").attr("action", "${cp}/member");
-							//$("#frm").submit(); */
+									+ "\n active 값: " + active +"\n 사용자 아이디 : "+userid);
+							/* $("#frm").attr("method", "post");
+							$("#frm").attr("action", "${cp }/updateCreateMove");
+							$("#frm").submit(); */
 						});
 
 		//게시판 추가버튼 클릭시
 		$("#addBoardBtn").on(
 				"click",
 				function() {
+					var userid = $("#userid").val();
+					
 					var addBoardName = $("#addBoardName").val();
 					$("#addBName").val(addBoardName);
 					var addBName = $("#addBName").val();
 					alert("검색게시판 추가 \n 클릭후 hidden frm 설정 \n bcode 값: " + bcode
 							+ "\n title 값: " + title + "\n active 값: " + active
-							+ "\n\n\n" + "추가할 게시판 이름 : " + addBName);
-					//$("#frm").attr("action", "${cp}/member");
-					//$("#frm").submit(); */
+							+ "\n\n\n" + "추가할 게시판 이름 : " + addBName +"\n 사용자 아이디 : "+userid);
+					//userid, title.
+					//$("#frm").attr("method", "post");
+					//$("#frm").attr("action", "${cp }/boardCreateMove");
+					//$("#frm").submit();
 				});
 	});
 </script>
@@ -71,10 +79,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 		<!-- 넘겨줄 히든 값. -->
 		<form id="frm">
+			<!-- 사용자 아이디 값 -->
+			<input type="hidden" id="userid" name="userid" value="${S_USER.userid }" />
+			<!-- 게시판 조회시 사용 bcode, title, active-->
 			<input type="hidden" id="bcode" name="bcode" value="" /> <input
 				type="hidden" id="title" name="title" value="" /> <input
-				type="hidden" id="active" name="active" value="" /> <input
-				type="hidden" id="addBName" name="addBName" value="" />
+				type="hidden" id="active" name="active" value="" />
+			<!-- 생성 시 사용 -->
+			<input type="hidden" id="addBName" name="addBName" value="" />
 		</form>
 
 		<div id="if_list_div"
