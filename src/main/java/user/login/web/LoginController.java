@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +16,9 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import board.model.BoardVo;
+import board.service.BoardService;
+import board.service.BoardServiceI;
 import user.model.UserVo;
 import user.service.UserService;
 import user.service.UserServiceI;
@@ -26,6 +30,7 @@ public class LoginController extends HttpServlet {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	private UserServiceI userService = new UserService();
+	private BoardServiceI boardService = new BoardService();
 
 	// 요청 메소드와 관련없이 서블릿이 동작하게 하려면
 	@Override
@@ -55,6 +60,13 @@ public class LoginController extends HttpServlet {
 			session.setAttribute("logintime", logintime);
 			
 			req.setAttribute("userid", userid);
+			
+			// 조회된 게시판 리스트화
+			List<BoardVo> boardList = boardService.selectAllBoard();
+			req.setAttribute("boardList", boardList);
+			logger.debug("조회된 전체 list 목록 수 {}", boardList.size());
+			
+			
 //			req.setAttribute("pass", pass);
 //			req.getRequestDispatcher("/pagingUser").forward(req, resp);
 //			resp.sendRedirect(req.getContextPath() + "/boardmain.jsp");

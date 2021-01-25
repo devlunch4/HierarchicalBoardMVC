@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 	<!-- Brand Logo -->
@@ -18,7 +21,7 @@
 			</div>
 			<div class="info">
 				<div class="row">
-					<a class="col-md-8" href="#" class="d-block">sally(병아리)</a>
+					<a class="col-md-8" href="#" class="d-block">접속자: ${S_USER.userid}</a>
 				</div>
 			</div>
 		</div>
@@ -30,12 +33,24 @@
 			</div>
 			<div class="info">
 				<div class="row">
-					<a class="col-md-8" href="/boardCreateMove" class="d-block">게시판 생성</a>
+					<a class="col-md-8" href="/boardCreateMove" class="d-block">게시판
+						생성</a>
 				</div>
 			</div>
-
-
 		</div>
+
+
+		<c:forEach items="${boardList }" var="boardList">
+			<div class="user-panel mt-3 pb-3 mb-3" <c:if test="${boardList.active == '1' }"> style="display: none;"</c:if>>
+				<div class="info">
+					<div class="row">
+						<a class="col-md-8"
+							href="/boardOneSelect?bcode=${boardList.bcode }" <c:if test="${boardList.active == '1' }"> style="display: none;"</c:if>>${boardList.title }</a>
+					</div>
+				</div>
+			</div>
+		</c:forEach>
+
 
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 			<div class="image">
