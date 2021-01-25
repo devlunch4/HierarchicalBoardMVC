@@ -82,6 +82,12 @@
 		)
 	</insert>
 
+	<!-- 게시글 하나 조회 -->
+	<select id="boardOneRead" resultType="boardVo"
+		parameterType="int">
+		SELECT * FROM hBoard
+		WHERE bcode = #{value}
+	</select>
 
 	<!-- -->
 	<!-- -->

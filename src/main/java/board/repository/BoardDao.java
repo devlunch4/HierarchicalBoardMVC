@@ -56,7 +56,7 @@ public class BoardDao implements BoardDaoI {
 
 	}
 
-	//게시판 글 생성/추가
+	// 게시판 글 생성/추가
 	@Override
 	public int boardWrite(BoardVo boardVo) {
 		SqlSession sqlSession = MybatisUtil.getSqlSession();
@@ -69,5 +69,14 @@ public class BoardDao implements BoardDaoI {
 		sqlSession.close();
 		return boardWriteCnt;
 	}
-	
+
+	// 글 하나 조회
+	@Override
+	public BoardVo boardOneRead(int bcode) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		BoardVo boardVo = sqlSession.selectOne("board.boardOneRead", bcode);
+		sqlSession.close();
+		return boardVo;
+	}
+
 }

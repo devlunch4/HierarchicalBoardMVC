@@ -38,5 +38,10 @@ public class BoardService implements BoardServiceI {
 		// TODO Auto-generated method stub
 		return boardDao.boardWrite(boardVo);
 	}
+	// 글 하나 조회
+	@Override
+	public BoardVo boardOneRead(int bcode) {
+		return boardDao.boardOneRead(bcode);
+	}
 
 }

@@ -21,4 +21,7 @@ public interface BoardDaoI {
 	
 	// 게시판 글 생성/추가
 	int boardWrite(BoardVo boardVo);
+	
+	// 글 하나 조회
+	BoardVo boardOneRead(int bcode);
 }

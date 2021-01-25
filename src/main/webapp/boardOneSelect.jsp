@@ -29,15 +29,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script type="text/javascript">
 	$(function() {
+		$(".oneBoard").on("click", function() {
+			var bcode = $(this).data("bcode");
+			$("#bcode").val(bcode);
+			var writer = $(this).data("writer");
+			$("#writer").val(writer);
+			$("#frm").attr("action", "${cp}/readOneBoard");
+			$("#frm").submit();
+		});
+		
+		
 		//글쓰기 버튼 클릭시
-		
-		
 		$("#writeBtn").on("click", function() {
-			
 			$("#frm").attr("method", "get");
 			$("#frm").attr("action", "${cp }/boardWrite");
 			$("#frm").submit();
-		})
+		});
 
 	});
 </script>
@@ -110,8 +117,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											</tr>
 											<c:forEach items="${oneBoardList }" var="oneBoardList"
 												varStatus="loop">
-												<tr class="oneBoardList"
-													data-groupord="${oneBoardList.groupord }">
+												<tr class="oneBoard" data-bcode="${oneBoardList.bcode }"
+													data-groupord="${oneBoardList.groupord }"
+													data-grouplayer="${oneBoardList.grouplayer }"
+													data-active="${oneBoardList.active }"
+													data-title="${oneBoardList.title }"
+													data-writer="${oneBoardList.writer }"
+													data-content="${oneBoardList.content }">
 													<td>${oneBoardList.groupord }</td>
 													<td>${oneBoardList.title }</td>
 													<td>${oneBoardList.writer }</td>
