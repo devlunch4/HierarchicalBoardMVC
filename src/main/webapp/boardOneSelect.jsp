@@ -24,7 +24,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 <script src="<c:url value="/js/jquery.min.js" />"></script>
-
+<!-- summernote script -->
+		<%@ include file="/common/summerNoteScript.jsp"%>
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -39,7 +40,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<input type="hidden" id="userid" name="userid"
 				value="${S_USER.userid }" />
 			<!-- 게시판 조회/수정시 사용 bcode, title, active-->
-			<input type="hidden" id="bcode" name="bcode" value="" /> <input
+			<input type="hidden" id="bcode" name="bcode" value="" />
+			<input type="hidden" id="originno" name="originno" value="" />
+			<input type="hidden" id="groupord" name="groupord" value="" />
+			<input type="hidden" id="grouplayer" name="grouplayer" value="" />
+			<input type="hidden" id="writer" name="writer" value="" />
+			 <input
 				type="hidden" id="title" name="title" value="" /> <input
 				type="hidden" id="active" name="active" value="" />
 			<!-- 생성 시 사용 -->
@@ -76,15 +82,89 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<br>선택한 게시판을 확인할수 있습니다.
 							</div>
 							<hr>
-
-
-
-
+							<div class="row">
+								<div class="col-sm-12">
+									<table class="table table-bordered">
+										<tbody>
+											<tr>
+												<th>게시글순번</th>
+												<th>제목</th>
+												<th>작성자</th>
+												<th>작성일</th>
+												<!-- yyyy-MM-dd  -->
+											</tr>
+											<c:forEach items="${oneList }" var="oneList" varStatus="loop">
+												<tr class="oneList" data-userid="${oneList.bcode }">
+													<td>${oneList.title }</td>
+													<td>${oneList.writer }</td>
+													<td><fmt:formatDate value="${oneList.reg_datetime }"
+															pattern="yyyy-MM-dd" /></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+								<!-- col-sm-12 -->
+							</div>
+							<!-- row -->
 						</div>
+
+
 						<!-- card-body -->
+						<div class="card-footer">
+							<nav aria-label="member list Navigation">
+								<ul class="pagination justify-content-center m-0">
+									<li class="page-item"><a class="page-link"
+										href="${cp }/pagingUser?page=1&pageSize=${pagevo.pageSize }"><i
+											class="fas fa-angle-double-left"></i></a></li>
+
+
+									<li class="page-item"><a class="page-link"
+										href="${cp }/pagingUser?page=
+<c:choose>
+<c:when test="${pagevo.getPage()- 1 <= 0 }">1</c:when>
+<c:otherwise>${pagevo.getPage()- 1}</c:otherwise>
+</c:choose>&pageSize=${pagevo.pageSize }"><i
+											class="fas fa-angle-left"></i></a></li>
+
+									<c:forEach begin="1" end="${pagination }" var="i">
+										<c:choose>
+											<c:when test="${pagevo.page == i }">
+
+												<li class="page-item active"><a class="page-link"
+													href="#">${i }</a></li>
+											</c:when>
+											<c:otherwise>
+												<li class="page-item"><a class="page-link"
+													href="${cp }/pagingUser?page=${i }&pageSize=${pagevo.pageSize }">${i }</a></li>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+									<li class="page-item"><a class="page-link"
+										href="${cp }/pagingUser?page=
+<c:choose>
+<c:when test="${pagevo.getPage()+ 1 > pagination }">${pagination }</c:when>
+<c:otherwise>${pagevo.getPage()+ 1}</c:otherwise>
+</c:choose>&pageSize=${pagevo.pageSize }"><i
+											class="fas fa-angle-right"></i></a></li>
+
+
+
+									<li class="page-item"><a class="page-link"
+										href="${cp }/pagingUser?page=${pagination }&pageSize=${pagevo.pageSize }"><i
+											class="fas fa-angle-double-right"></i></a></li>
+								</ul>
+							</nav>
+						</div>
+
+
+
+
 						<!-- card-footer -->
 					</div>
 					<!-- card  -->
+					<button type="button" class="btn btn-primary" id="writeBtn"
+						name="writeBtn">글쓰기</button>
 				</section>
 			</div>
 		</div>
@@ -94,6 +174,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<%@ include file="/common/mainfooter.jsp"%>
 	<!-- ./wrapper -->
 	<!-- REQUIRED SCRIPTS -->
-	<%@ include file="/common/jqBootLte.jsp"%>
+	<%-- <%@ include file="/common/jqBootLte.jsp"%> --%>
 </body>
 </html>

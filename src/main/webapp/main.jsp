@@ -22,6 +22,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="stylesheet"
 	href="./resources/bootstrap/dist/css/adminlte.min.css">
 
+
+<!-- summernote script -->
+		<%@ include file="/common/summerNoteScript.jsp"%>
+
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -92,6 +96,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<%@ include file="/common/mainfooter.jsp"%>
 	<!-- ./wrapper -->
 	<!-- REQUIRED SCRIPTS -->
-	<%@ include file="/common/jqBootLte.jsp"%>
+<%-- 	<%@ include file="/common/jqBootLte.jsp"%> --%>
 </body>
 </html>

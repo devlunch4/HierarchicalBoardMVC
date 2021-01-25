@@ -24,6 +24,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 <script src="<c:url value="/js/jquery.min.js" />"></script>
+<!-- summernote script -->
+		<%@ include file="/common/summerNoteScript.jsp"%>
 <script type="text/javascript">
 	$(function() {
 
@@ -160,6 +162,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<%@ include file="/common/mainfooter.jsp"%>
 	<!-- ./wrapper -->
 	<!-- REQUIRED SCRIPTS -->
-	<%@ include file="/common/jqBootLte.jsp"%>
+	<%-- <%@ include file="/common/jqBootLte.jsp"%> --%>
 </body>
 </html>
