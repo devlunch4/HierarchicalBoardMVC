@@ -52,16 +52,24 @@ public class BoardCreateMove extends HttpServlet {
 		// 세션의 아이디 가져오기
 		HttpSession session = req.getSession();
 		UserVo userVo = (UserVo) session.getAttribute("S_USER");
+		// String writer = userVo.getUserid();
+		String writer = null;
+		try {
+			writer = userVo.getUserid();
+			logger.debug("session userid 값 : {}", writer);
+		} catch (Exception e) {
+			logger.debug("예외 발생 session 값 없음");
+		}
 
-		/* String writer = userVo.getUserid() == null ? "" : userVo.getUserid(); */
-		String writer = req.getParameter("userid");
+		// 페이지의 아이디 파라미터사용시
+		String userid = req.getParameter("userid");
 		logger.debug("title 값 : {}", title);
-		logger.debug("userid 값 : {}", writer);
+		logger.debug("userid 값 : {}", userid);
 
 		BoardVo boardVo = new BoardVo(writer, title);
 
-		/* int addBoard = boardService.addBoard(boardVo); */
-		if (writer == "" || userVo == null) {
+		// int addBoard = boardService.addBoard(boardVo);
+		if (writer == "" || writer == null || userVo == null) {
 			// 로그인 정보가 없을시
 			logger.debug("로그인 페이지로 이동>> userid값/userVo세션값 없음.");
 			resp.setContentType("text/html; charset=utf-8");
@@ -69,8 +77,8 @@ public class BoardCreateMove extends HttpServlet {
 			out.println("<script>alert('로그인을 해주세요'); location.href='" + "/login.jsp" + "';</script>");
 			out.close();
 		} else {
-			int addBoard = boardService.addBoard(boardVo);
-			if (addBoard == 1) {
+			int addBoardCnt = boardService.addBoard(boardVo);
+			if (addBoardCnt == 1) {
 				// 정상수행시
 				logger.debug("addBoard 추가완료 정상수행");
 				doGet(req, resp);

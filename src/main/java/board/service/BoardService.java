@@ -20,5 +20,11 @@ public class BoardService implements BoardServiceI {
 	public int addBoard(BoardVo boardVo) {
 		return boardDao.addBoard(boardVo);
 	}
+	// 게시판 상태 수정
+	@Override
+	public int updateBoardAct(BoardVo boardVo) {
+		
+		return boardDao.updateBoardAct(boardVo);
+	}
 
 }

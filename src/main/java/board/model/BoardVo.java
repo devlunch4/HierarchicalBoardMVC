@@ -15,15 +15,22 @@ public class BoardVo {
 	private String writer; // 작성자
 	private Date reg_datetime; // 날짜시간
 
-	
-	public BoardVo() {}
-	
+	public BoardVo() {
+	}
+
+	// 새로운 게시판 생성시 사용
 	public BoardVo(String writer, String title) {
 		this.writer = writer;
 		this.title = title;
 	}
-	
-	
+
+	// 게시판명,활성상태 수정시 사용
+	public BoardVo(int bcode, String title, int active) {
+		this.bcode = bcode;
+		this.title = title;
+		this.active = active;
+	}
+
 	public int getBcode() {
 		return bcode;
 	}

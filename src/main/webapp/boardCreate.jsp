@@ -27,7 +27,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script type="text/javascript">
 	$(function() {
 
-		//수정 버튼 클릭시
+		//수정 버튼 클릭시-게시판 정보수정/활성상태수정
 		$(".bUpdateBtn")
 				.on(
 						"click",
@@ -81,7 +81,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<form id="frm">
 			<!-- 사용자 아이디 값 -->
 			<input type="hidden" id="userid" name="userid" value="${S_USER.userid }" />
-			<!-- 게시판 조회시 사용 bcode, title, active-->
+			<!-- 게시판 조회/수정시 사용 bcode, title, active-->
 			<input type="hidden" id="bcode" name="bcode" value="" /> <input
 				type="hidden" id="title" name="title" value="" /> <input
 				type="hidden" id="active" name="active" value="" />

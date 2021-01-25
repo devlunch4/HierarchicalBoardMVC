@@ -11,4 +11,7 @@ public interface BoardServiceI {
 
 	// 게시판 생성
 	int addBoard(BoardVo boardVo);
+	
+	// 게시판 상태 수정
+	int updateBoardAct(BoardVo boardVo);
 }

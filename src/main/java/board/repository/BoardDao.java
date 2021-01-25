@@ -22,14 +22,29 @@ public class BoardDao implements BoardDaoI {
 	@Override
 	public int addBoard(BoardVo boardVo) {
 		SqlSession sqlSession = MybatisUtil.getSqlSession();
-		int addBoard = sqlSession.update("board.addBoard", boardVo);
-		if (addBoard == 1) {
+		int addBoardCnt = sqlSession.update("board.addBoard", boardVo);
+		if (addBoardCnt == 1) {
 			sqlSession.commit();
 		} else {
 			sqlSession.rollback();
 		}
 		sqlSession.close();
-		return addBoard;
+		return addBoardCnt;
 	}
+
+	@Override
+	public int updateBoardAct(BoardVo boardVo) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		int updateBoardActCnt = sqlSession.update("board.updateBoardAct", boardVo);
+		if (updateBoardActCnt == 1) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return updateBoardActCnt;
+	}
+
+	// 게시판 수정/활성수정
 
 }
