@@ -53,6 +53,7 @@ public class LoginController extends HttpServlet {
 			HttpSession session = req.getSession();
 			session.setAttribute("S_USER", user);
 			session.setAttribute("logintime", logintime);
+			
 			req.setAttribute("userid", userid);
 //			req.setAttribute("pass", pass);
 //			req.getRequestDispatcher("/pagingUser").forward(req, resp);

@@ -183,7 +183,7 @@ ALTER TABLE hfile
 		REFERENCES hboard (
 			bcode
 		);
-
+commit;
 --//
 -- insert 값 시  해당 입력될 컬럼 위치에 SEQ_BOARD.NEXTVAL 값 입력
 -- 현재 생성된 시퀀스 값 조회 SELECT SEQ_BOARD.CURRVAL FROM DUAL;

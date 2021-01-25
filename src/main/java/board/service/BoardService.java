@@ -17,8 +17,8 @@ public class BoardService implements BoardServiceI {
 
 	// 게시판 생성
 	@Override
-	public int boardCreate(BoardVo boardVo) {
-		return boardDao.boardCreate(boardVo);
+	public int addBoard(BoardVo boardVo) {
+		return boardDao.addBoard(boardVo);
 	}
 
 }

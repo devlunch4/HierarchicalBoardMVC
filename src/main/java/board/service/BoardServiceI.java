@@ -10,5 +10,5 @@ public interface BoardServiceI {
 	List<BoardVo> selectAllBoard();
 
 	// 게시판 생성
-	int boardCreate(BoardVo boardVo);
+	int addBoard(BoardVo boardVo);
 }

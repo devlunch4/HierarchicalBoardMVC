@@ -44,9 +44,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							alert("게시판 수정 클릭후 hidden frm 설정 \n bcode 값: "
 									+ bcode + "\n title 값: " + title
 									+ "\n active 값: " + active +"\n 사용자 아이디 : "+userid);
-							/* $("#frm").attr("method", "post");
-							$("#frm").attr("action", "${cp }/updateCreateMove");
-							$("#frm").submit(); */
+							$("#frm").attr("method", "post");
+							$("#frm").attr("action", "${cp }/boardActUpdate");
+							$("#frm").submit();
 						});
 
 		//게시판 추가버튼 클릭시
@@ -62,9 +62,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							+ "\n title 값: " + title + "\n active 값: " + active
 							+ "\n\n\n" + "추가할 게시판 이름 : " + addBName +"\n 사용자 아이디 : "+userid);
 					//userid, title.
-					//$("#frm").attr("method", "post");
-					//$("#frm").attr("action", "${cp }/boardCreateMove");
-					//$("#frm").submit();
+					$("#frm").attr("method", "post");
+					$("#frm").attr("action", "${cp }/boardCreateMove");
+					$("#frm").submit();
 				});
 	});
 </script>

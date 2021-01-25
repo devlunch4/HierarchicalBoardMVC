@@ -20,16 +20,16 @@ public class BoardDao implements BoardDaoI {
 
 	// 게시판 생성
 	@Override
-	public int boardCreate(BoardVo boardVo) {
+	public int addBoard(BoardVo boardVo) {
 		SqlSession sqlSession = MybatisUtil.getSqlSession();
-		int boardCreate = sqlSession.update("board.boardCreate", boardVo);
-		if (boardCreate == 1) {
+		int addBoard = sqlSession.update("board.addBoard", boardVo);
+		if (addBoard == 1) {
 			sqlSession.commit();
 		} else {
 			sqlSession.rollback();
 		}
 		sqlSession.close();
-		return boardCreate;
+		return addBoard;
 	}
 
 }
