@@ -30,6 +30,7 @@ public class BoardOneRead extends HttpServlet {
 
 		BoardVo boardVo = (BoardVo) boardService.boardOneRead(bcode);
 		logger.debug(boardVo.getContent());
+		
 	}
 
 }

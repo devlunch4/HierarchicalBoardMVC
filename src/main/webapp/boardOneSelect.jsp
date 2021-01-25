@@ -29,12 +29,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script type="text/javascript">
 	$(function() {
+		//게시글의 위치 를 클릭했을때 해당 게시글의 내용 보기 이동
 		$(".oneBoard").on("click", function() {
 			var bcode = $(this).data("bcode");
 			$("#bcode").val(bcode);
 			var writer = $(this).data("writer");
 			$("#writer").val(writer);
-			$("#frm").attr("action", "${cp}/readOneBoard");
+			$("#frm").attr("action", "${cp }/readOneBoard");
 			$("#frm").submit();
 		});
 		
