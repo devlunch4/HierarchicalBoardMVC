@@ -90,7 +90,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<div class="container-fluid">
 						<div class="row md-2">
 							<div class="col-sm-6">
-								<h1>게시판 조회</h1>
+								<h1> 게시판 조회</h1>
 							</div>
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-right">
@@ -109,7 +109,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<%@ include file="/common/cardheadersearchbar.jsp"%> --%>
 						<div class="card-body" style="text-align: left;">
 							<div>${S_USER.userid }님
-								<br>선택한 게시판을 확인할수 있습니다.
+								<br>선택한 ${boardtitle} 게시판을 확인할수 있습니다.
 							</div>
 							<hr>
 							<form id="frm2">

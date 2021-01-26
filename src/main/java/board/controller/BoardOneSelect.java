@@ -39,6 +39,11 @@ public class BoardOneSelect extends HttpServlet {
 		List<BoardVo> oneBoardList = boardService.selectOneBoard(ibcode);
 
 		//전송될 객설정
+		
+		BoardVo boardVo = (BoardVo) boardService.boardOneRead(ibcode);
+		String title = boardVo.getTitle();
+		
+		req.setAttribute("boardtitle", title);
 		req.setAttribute("oneBoardList", oneBoardList);
 		req.setAttribute("bcode", bcode);
 		req.getRequestDispatcher("/boardOneSelect.jsp").forward(req, resp);

@@ -54,7 +54,7 @@
 		hboard
 		WHERE originno=
 		#{value} and groupord
-		!= 0 ORDER BY originno, groupord, grouplayer
+		!= 0 ORDER BY originno, groupord DESC, grouplayer
 	</select>
 
 	<!-- 글 등록 -->
@@ -89,13 +89,14 @@
 		WHERE bcode = #{value}
 	</select>
 
-<!-- 게시글 하나 수정 -->
+	<!-- 게시글 하나 수정 -->
 	<update id="boardOneUpdate" parameterType="boardVo">
 		UPDATE hBoard SET
-		title = #{title}, content=#{content}, active =#{active} WHERE bcode=#{bcode}
+		title = #{title}, content=#{content}, active =#{active} WHERE
+		bcode=#{bcode}
 	</update>
 
-<!-- 게시글 답글 작성 -->
+	<!-- 게시글 답글 작성 -->
 
 
 
