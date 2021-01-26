@@ -65,4 +65,117 @@ INSERT INTO hboard (
     SYSDATE
 );
 
+
+
+
+
+
+INSERT INTO hboard (
+    bcode,
+    originno,
+    groupord,
+    grouplayer,
+    active,
+    title,
+    content,
+    writer,
+    reg_datetime
+) VALUES (
+    seq_hboard.NEXTVAL,
+    1,
+    1,
+    1,
+    0,
+    '1번글',
+    '내용',
+    'sally',
+    SYSDATE
+);
+INSERT INTO hboard (
+    bcode,
+    originno,
+    groupord,
+    grouplayer,
+    active,
+    title,
+    content,
+    writer,
+    reg_datetime
+) VALUES (
+    seq_hboard.NEXTVAL,
+    1,
+    2,
+    1,
+    0,
+    '2번글',
+    '내용',
+    'sally',
+    SYSDATE
+);
+INSERT INTO hboard (
+    bcode,
+    originno,
+    groupord,
+    grouplayer,
+    active,
+    title,
+    content,
+    writer,
+    reg_datetime
+) VALUES (
+    seq_hboard.NEXTVAL,
+    1,
+    3,
+    1,
+    0,
+    '3번글',
+    '내용',
+    'sally',
+    SYSDATE
+);
+
+INSERT INTO hboard (
+    bcode,
+    originno,
+    groupord,
+    grouplayer,
+    active,
+    title,
+    content,
+    writer,
+    reg_datetime
+) VALUES (
+    seq_hboard.NEXTVAL,
+    1,
+    2,
+    2,
+    0,
+    '2번글답글',
+    '내용',
+    'sally',
+    SYSDATE
+);
+
+INSERT INTO hboard (
+    bcode,
+    originno,
+    groupord,
+    grouplayer,
+    active,
+    title,
+    content,
+    writer,
+    reg_datetime
+) VALUES (
+    seq_hboard.NEXTVAL,
+    1,
+    2,
+    3,
+    0,
+    '2번글답글답글',
+    '내용',
+    'sally',
+    SYSDATE
+);
+
 commit;
