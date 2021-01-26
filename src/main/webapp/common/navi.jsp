@@ -7,7 +7,7 @@
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
 					href="#"><i class="fas fa-bars"></i></a></li>
-				<li class="nav-item d-none d-sm-inline-block"><a href="${cp }/main.jsp"
+				<li class="nav-item d-none d-sm-inline-block"><a href="${cp }/main"
 					class="nav-link">HOME</a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a href="${cp }/boardCreateMove"
 					class="nav-link">게시판 생성</a></li>

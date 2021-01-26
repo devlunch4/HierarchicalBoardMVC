@@ -22,10 +22,13 @@ public class BoardWrite extends HttpServlet {
 	private static final Logger logger = LoggerFactory.getLogger(BoardWrite.class);
 	private BoardServiceI boardService = new BoardService();
 
-	// 클쓰기 버튼 클릭시
+	// 글쓰기 버튼 클릭시
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		logger.debug("글쓰기 summernote doGet()");
+		logger.debug("글쓰기 버튼클릭 진입 doGet()");
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		
 		String bcode = req.getParameter("bcode");
 		int ibcode = Integer.parseInt(bcode);
 		logger.debug("ibcode 값: {}", ibcode);
@@ -38,51 +41,59 @@ public class BoardWrite extends HttpServlet {
 	// 글작성완료 버튼 클릭시
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		logger.debug("IN doPost()");
+		logger.debug("글작성완료 버튼 클릭 doPost()");
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		
+		
 		// String bcode = req.getParameter("bcode");
 		// int ibcode = Integer.parseInt(bcode);
 
 		// bcode 시퀀스 자동. >> originno 설정용
-		String parentBcode = req.getParameter("parentBcode");
-		int iparentBcode = Integer.parseInt(parentBcode);
+		int parentBcode = Integer.parseInt(req.getParameter("parentBcode"));
 
 		// originno 설정
 		// String originno = req.getParameter("originno");
-		int ioriginno = iparentBcode;
+		int originno = parentBcode;
 
 		// groupord 게시판의 list.size를 활용
-		List<BoardVo> oneBoardList = boardService.selectOneBoard(iparentBcode);
+		List<BoardVo> oneBoardList = boardService.selectOneBoard(originno);
 		// String groupord = req.getParameter("groupord");
-		int igroupord = oneBoardList.size() + 1;
+		int groupord = oneBoardList.size() + 1;
 
-		// grouplayer 무조건 1
+		// grouplayer 게시판의 첫글 글 작성시 layer무조건 1
 		// String grouplayer = req.getParameter("grouplayer");
-		int igrouplayer = 1;
+		int grouplayer = 1;
 
 		// 글쓴이
 		String writer = req.getParameter("userid");
 		String title = req.getParameter("title");
+		
 		// 작성글
-		String content = req.getParameter("summernote");
-
-		logger.debug("iparentBcode 및 ioriginno 값: {}", ioriginno);
-		logger.debug("igroupord 값: {}", igroupord);
-		logger.debug("igrouplayer 값: {}", igrouplayer);
+		String content = req.getParameter("summernote").trim();
+		
+		//확인 로거
+		logger.debug("parentBcode : {}", parentBcode);
+		logger.debug("originno 값: {}", originno);
+		logger.debug("groupord 값: {}", groupord);
+		logger.debug("grouplayer 값: {}", grouplayer);
 		logger.debug("writer 값: {}", writer);
 		logger.debug("title 값: {}", title);
 		logger.debug("content 값: {}", content);
 
-		req.setAttribute("parentBcode", iparentBcode);
-		req.setAttribute("bcode", iparentBcode);
+		
+
+		req.setAttribute("parentBcode", parentBcode);
+		req.setAttribute("bcode", parentBcode);
 
 		// 글 등록용 vo 객체 생성
-		BoardVo boardVo = new BoardVo(iparentBcode, ioriginno, igroupord, igrouplayer, writer, title, content);
+		BoardVo boardVo = new BoardVo(parentBcode, originno, groupord, grouplayer, writer, title, content);
 
 		int boardWriteCnt = boardService.boardWrite(boardVo);
 		if (boardWriteCnt == 1) {
 			// 정상수행
 			logger.debug("BoardWrite 정상수행");
-			resp.sendRedirect(req.getContextPath() + "/boardOneSelect?bcode="+iparentBcode);
+			resp.sendRedirect(req.getContextPath() + "/boardOneSelect?bcode="+parentBcode);
 		} else {
 			// 비정상수행
 			logger.debug("BoardWrite 비정상수행");

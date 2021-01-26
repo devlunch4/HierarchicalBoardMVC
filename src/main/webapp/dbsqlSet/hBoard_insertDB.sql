@@ -15,7 +15,7 @@ INSERT INTO hboard (
     0,
     0,
     0,
-    '1번글',
+    '1번게시판',
     '',
     '게시판생성자',
     SYSDATE
@@ -37,7 +37,7 @@ INSERT INTO hboard (
     0,
     0,
     0,
-    '2번글',
+    '2번게시판',
     '',
     '게시판생성자',
     SYSDATE
@@ -59,7 +59,7 @@ INSERT INTO hboard (
     0,
     0,
     0,
-    '3번글',
+    '3번게시판',
     '',
     '게시판생성자',
     SYSDATE

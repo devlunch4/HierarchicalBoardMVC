@@ -29,14 +29,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script type="text/javascript">
 	$(function() {
+
+		//해당 글을 클릭하여 내용 조회시
 		$(".oneBoard").on("click", function() {
 			var bcode = $(this).data("bcode");
 			$("#bcode").val(bcode);
 			var writer = $(this).data("writer");
 			$("#writer").val(writer);
+			
+			$("#frm").attr("method", "post");
 			$("#frm").attr("action", "${cp}/readOneBoard");
 			$("#frm").submit();
 		});
+
+		
 		
 		
 		//글쓰기 버튼 클릭시
@@ -63,13 +69,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				value="${S_USER.userid }" />
 
 			<!-- 게시판 조회/수정시 사용 bcode, title, active 글쓰기 에서 가져옴-->
-			<input type="hidden" id="bcode" name="bcode" value="${bcode }" /> <input
+			<input type="hidden" id="bcode" name="bcode" value="${bcode }" />
+			<!-- 게시글 클릭시 필요 정보 -->
+			<input type="hidden" id="writer" name="writer" value="" />
+
+			<!-- 			 <input
 				type="hidden" id="originno" name="originno" value="" /> <input
 				type="hidden" id="groupord" name="groupord" value="" /> <input
 				type="hidden" id="grouplayer" name="grouplayer" value="" /> <input
 				type="hidden" id="writer" name="writer" value="" /> <input
 				type="hidden" id="title" name="title" value="" /> <input
-				type="hidden" id="active" name="active" value="" />
+				type="hidden" id="active" name="active" value="" /> -->
+
 			<!-- 생성 시 사용 -->
 			<!-- <input type="hidden" id="addBName" name="addBName" value="" /> -->
 		</form>
@@ -104,39 +115,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<br>선택한 게시판을 확인할수 있습니다.
 							</div>
 							<hr>
-							<div class="row">
-								<div class="col-sm-12">
-									<table class="table table-bordered">
-										<tbody>
-											<tr>
-												<th>게시글순번</th>
-												<th>제목</th>
-												<th>작성자</th>
-												<th>작성일</th>
-												<!-- yyyy-MM-dd  -->
-											</tr>
-											<c:forEach items="${oneBoardList }" var="oneBoardList"
-												varStatus="loop">
-												<tr class="oneBoard" data-bcode="${oneBoardList.bcode }"
-													data-groupord="${oneBoardList.groupord }"
-													data-grouplayer="${oneBoardList.grouplayer }"
-													data-active="${oneBoardList.active }"
-													data-title="${oneBoardList.title }"
-													data-writer="${oneBoardList.writer }"
-													data-content="${oneBoardList.content }">
-													<td>${oneBoardList.groupord }</td>
-													<td>${oneBoardList.title }</td>
-													<td>${oneBoardList.writer }</td>
-													<td><fmt:formatDate
-															value="${oneBoardList.reg_datetime }"
-															pattern="yyyy-MM-dd" /></td>
+							<form id="frm2">
+								<div class="row">
+									<div class="col-sm-12">
+										<table class="table table-bordered">
+											<tbody>
+												<tr>
+													<th>게시글순번</th>
+													<th>제목</th>
+													<th>작성자</th>
+													<th>작성일</th>
+													<!-- yyyy-MM-dd  -->
 												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
+												<c:forEach items="${oneBoardList }" var="oneBoardList"
+													varStatus="loop">
+													<tr class="oneBoard" data-bcode="${oneBoardList.bcode }" data-writer="${oneBoardList.writer }">
+
+														<td>${oneBoardList.groupord }</td>
+														<td>${oneBoardList.title }</td>
+														<td>${oneBoardList.writer }</td>
+														<td><fmt:formatDate
+																value="${oneBoardList.reg_datetime }"
+																pattern="yyyy-MM-dd" /></td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</div>
+									<!-- col-sm-12 -->
 								</div>
-								<!-- col-sm-12 -->
-							</div>
+							</form>
 							<!-- row -->
 						</div>
 
@@ -187,9 +195,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								</ul>
 							</nav>
 						</div>
-
-
-
 
 						<!-- card-footer -->
 					</div>

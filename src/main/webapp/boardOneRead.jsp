@@ -13,7 +13,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-<title>게시판</title>
+<title>글 조회</title>
 
 <!-- Font Awesome Icons -->
 <link rel="stylesheet"
@@ -37,11 +37,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		//글 수정하기 클릭
 		$("#updateBtn").on("click", function() {
 			alert("글수정하기 클릭")
-			/* $("#frm").attr("method", "post");
-			$("#frm").attr("action", "${cp }/boardWrite");
+			
+			
+			$("#frm").attr("method", "post");
+			$("#frm").attr("action", "${cp }/boardOneUpdate");
 			$("#frm").submit(); */
 		});
-		
+
 		//답글 작성하기 클릭
 		$("#reBoardBtn").on("click", function() {
 			alert("답글 작성하기 클릭")
@@ -49,7 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			$("#frm").attr("action", "${cp }/boardWrite");
 			$("#frm").submit(); */
 		});
-		
+
 		//댓글 작성하기 클릭
 		$("#replyBtn").on("click", function() {
 			alert("댓글 작성하기 클릭")
@@ -57,7 +59,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			$("#frm").attr("action", "${cp }/boardWrite");
 			$("#frm").submit(); */
 		});
-		
 
 	});
 </script>
@@ -76,13 +77,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<input type="hidden" id="userid" name="userid"
 				value="${S_USER.userid }" />
 			<!-- 게시판 조회/수정시 사용 bcode, title, active-->
-			<input type="hidden" id="parentBcode" name="parentBcode"
-				value="${parentBcode }" />
-			<!-- <input type="hidden" id="bcode"
-				name="bcode" value="" /> <input type="hidden" id="title"
+			<input type="hidden" id="bcode" name="bcode"
+				value="${boardVo.bcode }" />
+				
+				
+			<!--  <input type="hidden" id="title"
 				name="title" value="" /> <input type="hidden" id="context"
 				name="context" value="" /><input type="hidden" id="active"
-				name="active" value="" /> -->
+				name="active" value="" />  -->
 			<!-- 생성 시 사용 -->
 
 
@@ -95,12 +97,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="container-fluid">
 							<div class="row md-2">
 								<div class="col-sm-6">
-									<h1>글 작성</h1>
+									<h1>글 확인</h1>
 								</div>
 								<div class="col-sm-6">
 									<ol class="breadcrumb float-sm-right">
 										<li class="breadcrumb-item">글</li>
-										<li class="breadcrumb-item">작성</li>
+										<li class="breadcrumb-item">확인</li>
 									</ol>
 								</div>
 							</div>
@@ -120,11 +122,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<div class="row">
 									<div class="col-sm-12">
 										<!-- summernote 추가 -->
-										제목 : <input type="text" id="title" name="title" value="" /> <br>
-										<br>
+										실제 글번호 : ${boardVo.bcode }<br> 게시판번호 : ${boardVo.originno }<br>
+										글 번호 : ${boardVo.groupord } <br> <br> 작성자 :
+										${boardVo.writer }<br> 제목 : <input type="text" id="title"
+											name="title" value="${boardVo.title }" /> 공개/비공개 <input
+											type="checkbox" id="active" name="active"
+											<c:choose>
+<c:when test="${boardVo.active == 0 }"> value="${boardVo.active }" checked="checked"</c:when>
+<c:otherwise>value="${boardVo.active }"</c:otherwise>
+</c:choose>>
+										<br> <br>
 										<textarea id="summernote" name="summernote">
-											<!-- <p>Hello Summernote</p> -->
+											${boardVo.content }
 										</textarea>
+										<br>
 										<div style="text-align: right;">
 											<button type="button" class="btn btn-primary" id="reBoardBtn"
 												name="reBoardBtn">답글작성하기</button>
@@ -136,10 +147,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								</div>
 
 
-								<div>댓글 작성란</div>
-								<button type="button" class="btn btn-primary" id="replyBtn"
-									name="replyBtn">댓글작성하기</button>
-
+								<div>댓글 작성</div>
+								<div style="text-align: left;">
+									<textarea id="replycontext" name="replycontext" rows="3"
+										cols="80"></textarea>
+								</div>
+								<div style="text-align: left;">
+									<button type="button" class="btn btn-primary" id="replyBtn"
+										name="replyBtn">댓글작성하기</button>
+								</div>
 							</div>
 							<!-- card-body -->
 							<!-- card-footer -->
