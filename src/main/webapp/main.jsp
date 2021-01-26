@@ -67,7 +67,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="card-body" style="text-align: left;">
 							<div>
 								${S_USER.userid } 님 반갑습니다.<br> 접속 시간은 ${logintime } 입니다.<br>
-								화면이동은 상단바, 또는 좌측 상단을 눌러 왼쪽바로 이동해주세요~
+								화면이동은 상단바, 또는 좌측 상단을 눌러 왼쪽바로 이동해주세요~<br> 아래 게시판 링크를 클릭하면 해당
+								게시판으로 이동됩니다
 							</div>
 							<hr>
 							<div style="margin-left: 10%;">
@@ -77,7 +78,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<div class="info">
 											<div class="row">
 												<a class="col-md-8"
-													href="/boardOneSelect?bcode=${boardList.bcode }"
+													href="/pagingBoard?bcode=${boardList.bcode }"
 													<c:if test="${boardList.active == '1' }"> style="display: none;"</c:if>>${boardList.title }</a>
 											</div>
 										</div>

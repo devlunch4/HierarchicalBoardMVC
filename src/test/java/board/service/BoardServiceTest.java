@@ -3,11 +3,13 @@ package board.service;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import board.model.BoardVo;
+import common.model.PageVo;
 
 public class BoardServiceTest {
 	private BoardServiceI boardService;
@@ -115,6 +117,20 @@ public class BoardServiceTest {
 
 		/*** Then ***/
 		assertEquals(1, boardOneUpdateCnt);
+	}
+
+	// 페이징선택에 따른 게시글 조회
+	@Test
+	public void selectPagingBoardTest() {
+		/*** Given ***/
+		PageVo pagevo = new PageVo(2, 2, 2);
+		/*** When ***/
+		Map<String, Object> map = boardService.selectPagingBoard(pagevo);
+		/*** Then ***/
+		List<BoardVo> boardVo = (List<BoardVo>) map.get("boardList");
+		int boardCnt = (int) map.get("boardCnt");
+		assertEquals(2, boardVo.size());
+		assertEquals(4, boardCnt);
 	}
 
 }

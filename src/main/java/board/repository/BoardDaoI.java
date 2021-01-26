@@ -3,6 +3,7 @@ package board.repository;
 import java.util.List;
 
 import board.model.BoardVo;
+import common.model.PageVo;
 
 public interface BoardDaoI {
 
@@ -27,4 +28,10 @@ public interface BoardDaoI {
 	
 	// 글 하나 수정
 	int boardOneUpdate(BoardVo boardVo);
+	
+	//게시글 페이징
+	List<BoardVo> selectPagingBoard(PageVo pagevo);
+	
+	// 해당 게시글 전체수 조회
+	int selectAllOneBoardCnt(int bcode);
 }

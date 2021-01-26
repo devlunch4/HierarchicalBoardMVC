@@ -3,6 +3,7 @@ package board.dao;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.junit.Test;
 import board.model.BoardVo;
 import board.repository.BoardDao;
 import board.repository.BoardDaoI;
+import common.model.PageVo;
 
 public class BoardDaoTest {
 	private BoardDaoI boardDao;
@@ -56,7 +58,7 @@ public class BoardDaoTest {
 		BoardVo boardVo = new BoardVo(1, "테스트", 0);
 		/*** When ***/
 		int updateBoardActCnt = boardDao.updateBoardAct(boardVo);
-		
+
 		/*** Then ***/
 		assertEquals(1, updateBoardActCnt);
 	}
@@ -79,7 +81,7 @@ public class BoardDaoTest {
 	@Test
 	public void boardWriteTest() {
 		/*** Given ***/
-	//	BoardDaoI boardDao = new BoardDao();
+		// BoardDaoI boardDao = new BoardDao();
 		// BoardVo boardVo = new BoardVo(parentBcode, originno, groupord, grouplayer,
 		// writer, title, content);
 		BoardVo boardVo = new BoardVo(1, 1, 1, 0, "테스트", "테스트", "테스트");
@@ -95,7 +97,7 @@ public class BoardDaoTest {
 	@Test
 	public void boardOneReadTest() {
 		/*** Given ***/
-	//	BoardDaoI boardDao = new BoardDao();
+		// BoardDaoI boardDao = new BoardDao();
 
 		/*** When ***/
 		// BoardVo boardVo = (BoardVo) boardService.boardOneRead(bcode);
@@ -109,14 +111,41 @@ public class BoardDaoTest {
 	@Test
 	public void boardOneUpdateTest() {
 		/*** Given ***/
-		//BoardDaoI boardDao = new BoardDao();
-		//BoardVo boardvo = new BoardVo(title, content, active, bcode);
-		BoardVo boardvo = new BoardVo("테스트","테스트", 0, 1);
+		// BoardDaoI boardDao = new BoardDao();
+		// BoardVo boardvo = new BoardVo(title, content, active, bcode);
+		BoardVo boardvo = new BoardVo("테스트", "테스트", 0, 1);
 		/*** When ***/
 		int boardOneUpdateCnt = boardDao.boardOneUpdate(boardvo);
-		
+
 		/*** Then ***/
 		assertEquals(1, boardOneUpdateCnt);
 	}
+	
+	//게시글 페이징
+	@Test
+	public void selectPagingBoardTest() {
+		/***Given***/
+		PageVo pagevo = new PageVo(2,2,2);
+
+		/***When***/
+		List<BoardVo> boardList = boardDao.selectPagingBoard( pagevo);
+		/***Then***/
+		assertEquals(2, boardList.size());
+		 
+	}
+	
+	// 해당 게시글 전체수 조회
+	@Test
+	public void selectAllOneBoardCntTest() {
+			/***Given***/
+			int bcode = 2;
+
+			/***When***/
+			int selectAllOneBoardCnt = boardDao.selectAllOneBoardCnt(bcode);
+			/***Then***/
+			assertEquals(4, selectAllOneBoardCnt);
+		}
+	
+	
 
 }

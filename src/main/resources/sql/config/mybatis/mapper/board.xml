@@ -52,10 +52,54 @@
 		SELECT *
 		FROM
 		hboard
-		WHERE originno=
-		#{value} and groupord
-		!= 0 ORDER BY originno, groupord DESC, grouplayer, reg_datetime DESC
+		WHERE
+		originno= #{value} and groupord
+		!= 0
+		ORDER BY originno, groupord DESC,
+		grouplayer, reg_datetime DESC
 	</select>
+	<!-- 선택한 게시판 게시글 수 조회 -->
+	<select id="selectAllOneBoardCnt" parameterType="pageVo"
+		resultType="Integer">
+		SELECT COUNT(*)
+		FROM
+		hboard
+		WHERE
+		originno= #{bcode} and groupord != 0
+		ORDER BY
+		originno, groupord DESC,
+		grouplayer, reg_datetime DESC
+
+	</select>
+
+
+
+	<select id="selectPagingBoard" resultType="boardVo"
+		parameterType="pageVo">
+		SELECT *
+		FROM
+		(SELECT ROWNUM rn , a.*
+		FROM
+		(SELECT *
+		FROM
+		hBoard
+		WHERE originno=
+		#{bcode} and groupord != 0
+		ORDER BY originno,
+		groupord DESC, grouplayer, reg_datetime DESC) a
+		WHERE
+		ROWNUM &lt;=
+		#{page} * #{pageSize})
+		WHERE
+		rn BETWEEN (#{page} - 1) *
+		#{pageSize} + 1
+		AND #{page} * #{pageSize}
+	</select>
+
+
+
+
+
 
 	<!-- 글 등록 -->
 	<insert id="boardWrite" parameterType="boardVo">

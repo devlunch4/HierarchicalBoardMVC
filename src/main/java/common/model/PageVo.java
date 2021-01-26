@@ -4,13 +4,15 @@ package common.model;
 public class PageVo {
 	private int page;
 	private int pageSize;
+	private int bcode;
 
 	public PageVo() {
 	}
 
-	public PageVo(int page, int pageSize) {
+	public PageVo(int page, int pageSize, int bcode) {
 		this.page = page;
 		this.pageSize = pageSize;
+		this.bcode = bcode;
 	}
 
 	public int getPage() {
@@ -29,4 +31,13 @@ public class PageVo {
 		this.pageSize = pageSize;
 	}
 
+	public int getBcode() {
+		return bcode;
+	}
+
+	public void setBcode(int bcode) {
+		this.bcode = bcode;
+	}
+
+	
 }

@@ -6,7 +6,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 	<!-- Brand Logo -->
-	<a href="/main.jsp" class="brand-link"> <img
+	<a href="/main" class="brand-link"> <img
 		src="./resources/images/line.png"
 		class="brand-image img-circle elevation-3" style="opacity: .8">
 		<span class="brand-text font-weight-light">메인화면이동</span>
@@ -45,7 +45,7 @@
 				<div class="info">
 					<div class="row">
 						<a class="col-md-8"
-							href="/boardOneSelect?bcode=${boardList.bcode }" <c:if test="${boardList.active == '1' }"> style="display: none;"</c:if>>${boardList.title }</a>
+							href="/pagingBoard?bcode=${boardList.bcode }" <c:if test="${boardList.active == '1' }"> style="display: none;"</c:if>>${boardList.title }</a>
 					</div>
 				</div>
 			</div>

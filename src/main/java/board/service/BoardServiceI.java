@@ -1,8 +1,10 @@
 package board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import board.model.BoardVo;
+import common.model.PageVo;
 
 public interface BoardServiceI {
 
@@ -23,7 +25,10 @@ public interface BoardServiceI {
 
 	// 글 하나 조회
 	BoardVo boardOneRead(int bcode);
-	
+
 	// 글 하나 수정
-		int boardOneUpdate(BoardVo boardVo);
+	int boardOneUpdate(BoardVo boardVo);
+
+	// 게시글 페이징
+	Map<String, Object>  selectPagingBoard(PageVo pagevo);
 }

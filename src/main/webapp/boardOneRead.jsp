@@ -36,17 +36,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 		//글 수정하기 클릭
 		$("#updateBtn").on("click", function() {
-			alert("수정 진입" + $("#active").is(":checked"));
 			var activeValue = $("#active").is(":checked");
 			$("#activeValue").val(activeValue)
 			$("#frm").attr("method", "post");
-			$("#frm").attr("action", "${cp }/boardOneUpdate");
+			$("#frm").attr("action", "${cp }/boardOneUpdateMove");
 			$("#frm").submit();
 		});
 
 		//답글 작성하기 클릭
 		$("#reBoardBtn").on("click", function() {
-			alert("답글 작성하기 클릭")
 			$("#frm").attr("method", "post");
 			$("#frm").attr("action", "${cp }/boardReWriteMove");
 			$("#frm").submit();
@@ -70,10 +68,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<%@ include file="/common/navi.jsp"%>
 		<!-- Main Sidebar Container -->
 		<%@ include file="/common/mainside.jsp"%>
-
-
-
-
 
 		<div id="if_list_div"
 			style="position: relative; padding: 0; overflow: auto; height: 750px;">
@@ -136,16 +130,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 										<hr>
-										작성자 : <input value="${boardVo.writer }" /> <br>
+										작성자 : <input value="${boardVo.writer }" readonly="readonly"/> <br>
 										제&nbsp;&nbsp;&nbsp;목 : <input type="text" id="title"
-											name="title" value="${boardVo.title }" /> 공개/삭제 <input
+											name="title" value="${boardVo.title }" readonly="readonly"/> 공개/삭제 <input
 											type="checkbox" id="active" name="active"
 											<c:choose>
 <c:when test="${boardVo.active == 0 }"> value="0" checked="checked"</c:when>
 <c:otherwise>value="1" </c:otherwise>
 </c:choose>>
 										<br> <br>
-										<textarea id="summernote" name="summernote">
+										<textarea id="summernote" name="summernote" readonly="readonly">
 											${boardVo.content }
 										</textarea>
 										<hr>

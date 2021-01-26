@@ -36,30 +36,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 		//글 수정하기 클릭
 		$("#updateBtn").on("click", function() {
-			alert("수정 진입" + $("#active").is(":checked"));
 			var activeValue = $("#active").is(":checked");
 			$("#activeValue").val(activeValue)
 			$("#frm").attr("method", "post");
 			$("#frm").attr("action", "${cp }/boardOneUpdate");
 			$("#frm").submit();
 		});
-
-		//답글 작성하기 클릭
-		$("#reBoardBtn").on("click", function() {
-			alert("답글 작성하기 클릭")
-			$("#frm").attr("method", "post");
-			$("#frm").attr("action", "${cp }/boardReWriteMove");
-			$("#frm").submit();
-		});
-
-		//댓글 작성하기 클릭
-		$("#replyBtn").on("click", function() {
-			alert("댓글 작성하기 클릭")
-			/* $("#frm").attr("method", "post");
-			$("#frm").attr("action", "${cp }/replyWrite");
-			$("#frm").submit(); */
-		});
-
 	});
 </script>
 
@@ -83,12 +65,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<div class="container-fluid">
 						<div class="row md-2">
 							<div class="col-sm-6">
-								<h1>글 확인</h1>
+								<h1>글 수정</h1>
 							</div>
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-right">
 									<li class="breadcrumb-item">글</li>
-									<li class="breadcrumb-item">확인</li>
+									<li class="breadcrumb-item">수정</li>
 								</ol>
 							</div>
 						</div>
@@ -125,7 +107,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<%@ include file="/common/cardheadersearchbar.jsp"%> --%>
 							<div class="card-body" style="text-align: left;">
 								<div>${S_USER.userid }님
-									<br>글 조회/수정/답글/댓글 작성을 할수 있습니다.
+									<br>글 수정 할수 있습니다.
 								</div>
 								<hr>
 								<div class="row">
@@ -136,8 +118,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 										<hr>
-										작성자 : <input value="${boardVo.writer }" /> <br>
-										제&nbsp;&nbsp;&nbsp;목 : <input type="text" id="title"
+										작성자 : <input value="${boardVo.writer }" readonly="readonly" />
+										<br> 제&nbsp;&nbsp;&nbsp;목 : <input type="text" id="title"
 											name="title" value="${boardVo.title }" /> 공개/삭제 <input
 											type="checkbox" id="active" name="active"
 											<c:choose>
@@ -153,12 +135,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<button type="button" class="btn btn-primary" id="golistBtn"
 												name="golistBtn"
 												onclick="location.href='${cp }/boardOneSelect?bcode=${boardVo.originno }';">목록으로</button>
-											<button type="button" class="btn btn-primary" id="reBoardBtn"
-												name="reBoardBtn">답글작성하기</button>
-
 											<button type="button" class="btn btn-primary" id="updateBtn"
 												name="updateBtn"
-												<c:if test="${S_USER.userid  != boardVo.writer}"> style="display: none;"</c:if>>글수정하기</button>
+												<c:if test="${S_USER.userid  != boardVo.writer}"> style="display: none;"</c:if>>글수정완료</button>
 										</div>
 									</div>
 									<!-- col-sm-12 -->
@@ -166,20 +145,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</div>
 							<!-- card-body -->
 							<!-- card-footer -->
-						</form>
-						<div style="margin-left: 5%;">*** 댓글 보기 ***</div>
-						<div style="margin-left: 5%;">*** 댓글 작성 ***</div>
-						<form id="frm2" name="frm2" action="">
-							<div style="text-align: left;">
-								<textarea id="replycontext" name="replycontext" rows="3"
-									cols="120"></textarea>
-							</div>
-							<div style="text-align: right;">
-								<button type="submit" class="btn btn-primary" id="replyBtn"
-									name="replyBtn">댓글작성완료</button>
-							</div>
-							<br> <br>
-						</form>
 					</div>
 					<!-- card  -->
 

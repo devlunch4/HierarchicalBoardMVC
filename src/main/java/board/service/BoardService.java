@@ -1,10 +1,14 @@
 package board.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import board.model.BoardVo;
 import board.repository.BoardDao;
 import board.repository.BoardDaoI;
+import common.model.PageVo;
+import user.model.UserVo;
 
 public class BoardService implements BoardServiceI {
 	private BoardDaoI boardDao = new BoardDao();
@@ -50,5 +54,17 @@ public class BoardService implements BoardServiceI {
 	public int boardOneUpdate(BoardVo boardVo) {
 		return boardDao.boardOneUpdate(boardVo);
 	}
+	//게시글 페이징
+	@Override
+	public Map<String, Object>  selectPagingBoard(PageVo pagevo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<BoardVo> boardList = boardDao.selectPagingBoard(pagevo);
+		int boardCnt = boardDao.selectAllOneBoardCnt(pagevo.getBcode());
+		map.put("boardList", boardList);
+		map.put("boardCnt", boardCnt);
+		return map;
+	}
+	
+	
 
 }

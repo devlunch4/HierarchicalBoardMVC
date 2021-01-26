@@ -30,44 +30,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	$(function() {
 
 		//수정 버튼 클릭시-게시판 정보수정/활성상태수정
-		$(".bUpdateBtn").on(
-				"click",
-				function() {
-					var userid = $("#userid").val();
+		$(".bUpdateBtn").on("click", function() {
+			var userid = $("#userid").val();
 
-					var bcode = $(this).data("bcode");
-					var title = $("#title" + bcode).val();
-					var active = $("#activeSlt" + bcode).val();
+			var bcode = $(this).data("bcode");
+			var title = $("#title" + bcode).val();
+			var active = $("#activeSlt" + bcode).val();
 
-					$("#bcode").val(bcode);
-					$("#title").val(title);
-					$("#active").val(active);
-					alert("게시판 수정 클릭후 hidden frm 설정 \n bcode 값: " + bcode
-							+ "\n title 값: " + title + "\n active 값: " + active
-							+ "\n 사용자 아이디 : " + userid);
-					$("#frm").attr("method", "post");
-					$("#frm").attr("action", "${cp }/boardActUpdate");
-					$("#frm").submit();
-				});
+			$("#bcode").val(bcode);
+			$("#title").val(title);
+			$("#active").val(active);
+			$("#frm").attr("method", "post");
+			$("#frm").attr("action", "${cp }/boardActUpdate");
+			$("#frm").submit();
+		});
 
 		//게시판 추가버튼 클릭시
-		$("#addBoardBtn").on(
-				"click",
-				function() {
-					var userid = $("#userid").val();
+		$("#addBoardBtn").on("click", function() {
+			var userid = $("#userid").val();
 
-					var addBoardName = $("#addBoardName").val();
-					$("#addBName").val(addBoardName);
-					var addBName = $("#addBName").val();
-					alert("검색게시판 추가 \n 클릭후 hidden frm 설정 \n bcode 값: " + bcode
-							+ "\n title 값: " + title + "\n active 값: " + active
-							+ "\n\n\n" + "추가할 게시판 이름 : " + addBName
-							+ "\n 사용자 아이디 : " + userid);
-					//userid, title.
-					$("#frm").attr("method", "post");
-					$("#frm").attr("action", "${cp }/boardCreateMove");
-					$("#frm").submit();
-				});
+			var addBoardName = $("#addBoardName").val();
+			$("#addBName").val(addBoardName);
+			var addBName = $("#addBName").val();
+			//userid, title.
+			$("#frm").attr("method", "post");
+			$("#frm").attr("action", "${cp }/boardCreateMove");
+			$("#frm").submit();
+		});
 	});
 </script>
 
@@ -157,7 +146,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<div class="info">
 											<div class="row">
 												<a class="col-md-8"
-													href="/boardOneSelect?bcode=${boardList.bcode }"
+													href="/pagingBoard?bcode=${boardList.bcode }"
 													<c:if test="${boardList.active == '1' }"> style="display: none;"</c:if>>${boardList.title }</a>
 											</div>
 										</div>
