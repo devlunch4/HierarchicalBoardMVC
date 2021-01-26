@@ -59,9 +59,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				value="${S_USER.userid }" />
 			<!-- 게시판 조회/수정시 사용 bcode, title, active-->
 			<input type="hidden" id="parentBcode" name="parentBcode"
-				value="${parentBcode }" />
-			<!-- <input type="hidden" id="bcode"
-				name="bcode" value="" /> <input type="hidden" id="title"
+				value="${parentBoardVo.originno }" />
+			<%-- 	<input type="hidden" id="bcode"
+				name="bcode" value="${parentBoardVo.bcode }" /> --%>
+				<input type="hidden" id="groupord"
+				name="groupord" value="${parentBoardVo.groupord }" />  
+						<input type="hidden" id="grouplayer"
+				name="grouplayer" value="${parentBoardVo.grouplayer + 1}" />  
+			<!-- <input type="hidden" id="title"
 				name="title" value="" /> <input type="hidden" id="context"
 				name="context" value="" /><input type="hidden" id="active"
 				name="active" value="" /> -->
@@ -70,7 +75,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 			<div id="if_list_div"
-				style="position: relative; padding: 0; overflow: hidden; height: 750px;">
+				style="position: relative; padding: 0; overflow: auto; height: 750px;">
 				<div class="content-wrapper" style="min-height: 584px;">
 					<!-- Content Header (Page header) -->
 					<section class="content-header">
@@ -96,7 +101,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<%@ include file="/common/cardheadersearchbar.jsp"%> --%>
 							<div class="card-body" style="text-align: left;">
 								<div>${S_USER.userid }님
-									<br>답글작성을 할수 있습니다.
+									<br>답글작성을 할수 있습니다.<br> 원글 정보 :
+									bcode:${parentBoardVo.bcode } originno:${parentBoardVo.originno }
+									title:${parentBoardVo.title }
 								</div>
 								<hr>
 								<div class="row">
@@ -105,16 +112,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										제목 : <input type="text" id="title" name="title" value="" /> <br>
 										<br>
 										<textarea id="summernote" name="summernote">
-											<p>Hello Summernote</p>
+											<p>답글 작성 내용 입력</p>
 										</textarea>
 										<div style="text-align: right;">
 											<button type="button" class="btn btn-primary" id="writeBtn"
-												name="writeBtn">답글 작성완료</button>
+												name="writeBtn">답글 작성완료</button> <button type="button" class="btn btn-primary" id="golistBtn"
+											name="golistBtn"
+											onclick="location.href='${cp }/boardOneSelect?bcode=${parentBoardVo.originno }';">답글작성취소</button>
 										</div>
-										<button type="button" class="btn btn-primary" id="golistBtn"
-												name="golistBtn" onclick="location.href='${cp }/boardOneSelect?bcode=${boardVo.originno }';"
-												>답글작성취소</button>
 										
+
 									</div>
 									<!-- col-sm-12 -->
 								</div>

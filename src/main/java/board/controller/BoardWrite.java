@@ -28,7 +28,7 @@ public class BoardWrite extends HttpServlet {
 		logger.debug("글쓰기 버튼클릭 진입 doGet()");
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
-		
+
 		String bcode = req.getParameter("bcode");
 		int ibcode = Integer.parseInt(bcode);
 		logger.debug("ibcode 값: {}", ibcode);
@@ -44,8 +44,7 @@ public class BoardWrite extends HttpServlet {
 		logger.debug("글작성완료 버튼 클릭 doPost()");
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
-		
-		
+
 		// String bcode = req.getParameter("bcode");
 		// int ibcode = Integer.parseInt(bcode);
 
@@ -58,21 +57,25 @@ public class BoardWrite extends HttpServlet {
 
 		// groupord 게시판의 list.size를 활용
 		List<BoardVo> oneBoardList = boardService.selectOneBoard(originno);
-		// String groupord = req.getParameter("groupord");
-		int groupord = oneBoardList.size() + 1;
+
+		// jsp 설정 가져옴
+		int groupord = Integer.parseInt(req.getParameter("groupord"));
+
+		if (groupord == 0) {
+			groupord = oneBoardList.size() + 1;
+		}
 
 		// grouplayer 게시판의 첫글 글 작성시 layer무조건 =1 >> jsp 에서 설정함.
 		int grouplayer = Integer.parseInt(req.getParameter("grouplayer"));
-		
 
 		// 글쓴이
 		String writer = req.getParameter("userid");
 		String title = req.getParameter("title");
-		
+
 		// 작성글
 		String content = req.getParameter("summernote").trim();
-		
-		//확인 로거
+
+		// 확인 로거
 		logger.debug("parentBcode : {}", parentBcode);
 		logger.debug("originno 값: {}", originno);
 		logger.debug("groupord 값: {}", groupord);
@@ -80,8 +83,6 @@ public class BoardWrite extends HttpServlet {
 		logger.debug("writer 값: {}", writer);
 		logger.debug("title 값: {}", title);
 		logger.debug("content 값: {}", content);
-
-		
 
 		req.setAttribute("parentBcode", parentBcode);
 		req.setAttribute("bcode", parentBcode);
@@ -93,7 +94,7 @@ public class BoardWrite extends HttpServlet {
 		if (boardWriteCnt == 1) {
 			// 정상수행
 			logger.debug("BoardWrite 정상수행");
-			resp.sendRedirect(req.getContextPath() + "/boardOneSelect?bcode="+parentBcode);
+			resp.sendRedirect(req.getContextPath() + "/boardOneSelect?bcode=" + parentBcode);
 		} else {
 			// 비정상수행
 			logger.debug("BoardWrite 비정상수행");

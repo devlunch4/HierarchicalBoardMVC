@@ -54,7 +54,7 @@
 		hboard
 		WHERE originno=
 		#{value} and groupord
-		!= 0 ORDER BY originno, groupord DESC, grouplayer
+		!= 0 ORDER BY originno, groupord DESC, grouplayer, reg_datetime DESC
 	</select>
 
 	<!-- 글 등록 -->

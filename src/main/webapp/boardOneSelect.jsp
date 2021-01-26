@@ -83,14 +83,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		</form>
 
 		<div id="if_list_div"
-			style="position: relative; padding: 0; overflow: hidden; height: 750px;">
+			style="position: relative; padding: 0; overflow: auto; height: 750px;">
 			<div class="content-wrapper" style="min-height: 584px;">
 				<!-- Content Header (Page header) -->
 				<section class="content-header">
 					<div class="container-fluid">
 						<div class="row md-2">
 							<div class="col-sm-6">
-								<h1> 게시판 조회</h1>
+								<h1>게시판 조회</h1>
 							</div>
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-right">
@@ -118,7 +118,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<table class="table table-bordered">
 											<tbody>
 												<tr>
-													<th>게시글순번</th>
+													<th>게시번호</th>
 													<th>제목</th>
 													<th>작성자</th>
 													<th>작성일</th>
@@ -128,14 +128,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 													varStatus="loop">
 													<tr class="oneBoard" data-bcode="${oneBoardList.bcode }"
 														data-writer="${oneBoardList.writer }">
-														<td>${oneBoardList.groupord }</td>
+														<td>${oneBoardList.groupord }-${oneBoardList.grouplayer }</td>
 
 
 
 														<td><c:if test="${oneBoardList.grouplayer > 1}">
-																<c:forEach begin="1" end="${oneBoardList.grouplayer }">&nbsp;&nbsp; </c:forEach>
+																<c:forEach begin="2" end="${oneBoardList.grouplayer }">==></c:forEach>
 														RE :
-														</c:if>${oneBoardList.title }</td>
+														</c:if> <c:choose>
+																<c:when test="${oneBoardList.active == 0}">${oneBoardList.title }</c:when>
+																<c:otherwise>비공개 체크 되어있습니다.</c:otherwise>
+															</c:choose></td>
 
 
 

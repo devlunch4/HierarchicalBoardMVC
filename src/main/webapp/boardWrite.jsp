@@ -60,6 +60,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- 게시판 조회/수정시 사용 bcode, title, active-->
 			<input type="hidden" id="parentBcode" name="parentBcode"
 				value="${parentBcode }" />
+				
+				<input type="hidden" id="groupord" name="groupord"
+				value="0" />	
 			<input type="hidden" id="grouplayer" name="grouplayer"
 				value="1" />	
 			<!-- <input type="hidden" id="bcode"
@@ -72,7 +75,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 			<div id="if_list_div"
-				style="position: relative; padding: 0; overflow: hidden; height: 750px;">
+				style="position: relative; padding: 0; overflow: auto; height: 750px;">
 				<div class="content-wrapper" style="min-height: 584px;">
 					<!-- Content Header (Page header) -->
 					<section class="content-header">

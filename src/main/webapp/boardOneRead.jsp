@@ -47,9 +47,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		//답글 작성하기 클릭
 		$("#reBoardBtn").on("click", function() {
 			alert("답글 작성하기 클릭")
-			/* $("#frm").attr("method", "post");
-			$("#frm").attr("action", "${cp }/boardWrite");
-			$("#frm").submit(); */
+			$("#frm").attr("method", "post");
+			$("#frm").attr("action", "${cp }/boardReWriteMove");
+			$("#frm").submit();
 		});
 
 		//댓글 작성하기 클릭
@@ -91,7 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 			<div id="if_list_div"
-				style="position: relative; padding: 0; overflow: hidden; height: 750px;">
+				style="position: relative; padding: 0; overflow: auto; height: 750px;">
 				<div class="content-wrapper" style="min-height: 584px;">
 					<!-- Content Header (Page header) -->
 					<section class="content-header">
