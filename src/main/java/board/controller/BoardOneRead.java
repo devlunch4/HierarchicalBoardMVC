@@ -37,9 +37,12 @@ public class BoardOneRead extends HttpServlet {
 		BoardVo boardVo = (BoardVo) boardService.boardOneRead(bcode);
 		req.setAttribute("boardVo", boardVo);
 		logger.debug(boardVo.getContent());
+<<<<<<< HEAD
 		//전송
 		req.getRequestDispatcher("/boardOneRead.jsp").forward(req, resp);
 		
+=======
+>>>>>>> refs/remotes/origin/master
 		
 	}
 
