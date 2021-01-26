@@ -56,7 +56,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		$("#replyBtn").on("click", function() {
 			alert("댓글 작성하기 클릭")
 			/* $("#frm").attr("method", "post");
-			$("#frm").attr("action", "${cp }/boardWrite");
+			$("#frm").attr("action", "${cp }/replyWrite");
 			$("#frm").submit(); */
 		});
 
