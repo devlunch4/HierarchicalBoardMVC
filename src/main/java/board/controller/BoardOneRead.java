@@ -35,12 +35,17 @@ public class BoardOneRead extends HttpServlet {
 
 		// 하나의 정보를 확인
 		BoardVo boardVo = (BoardVo) boardService.boardOneRead(bcode);
-		req.setAttribute("boardVo", boardVo);
-		logger.debug(boardVo.getContent());
-		//전송
-		req.getRequestDispatcher("/boardOneRead.jsp").forward(req, resp);
-		
-		
+
+		if (boardVo.getActive() == 1) {
+			resp.sendRedirect(req.getContextPath() + "/boardOneSelect?bcode=" + boardVo.getOriginno());
+		} else {
+
+			req.setAttribute("boardVo", boardVo);
+			logger.debug(boardVo.getContent());
+			// 전송
+			req.getRequestDispatcher("/boardOneRead.jsp").forward(req, resp);
+
+		}
 	}
 
 }

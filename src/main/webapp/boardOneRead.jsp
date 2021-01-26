@@ -36,7 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 		//글 수정하기 클릭
 		$("#updateBtn").on("click", function() {
-			alert("수정 진입"+ $("#active").is(":checked"));
+			alert("수정 진입" + $("#active").is(":checked"));
 			var activeValue = $("#active").is(":checked");
 			$("#activeValue").val(activeValue)
 			$("#frm").attr("method", "post");
@@ -126,7 +126,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										실제 글번호 : ${boardVo.bcode }<br> 게시판번호 : ${boardVo.originno }<br>
 										글 번호 : ${boardVo.groupord } <br> <br> 작성자
 										:${boardVo.writer } <br> 제목 : <input type="text"
-											id="title" name="title" value="${boardVo.title }" /> 공개/비공개
+											id="title" name="title" value="${boardVo.title }" /> 공개/삭제
 										<input type="checkbox" id="active" name="active"
 											<c:choose>
 <c:when test="${boardVo.active == 0 }"> value="0" checked="checked"</c:when>
@@ -139,13 +139,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<br>
 										<div style="text-align: right;">
 											<button type="button" class="btn btn-primary" id="golistBtn"
-												name="golistBtn" onclick="location.href='${cp }/boardOneSelect?bcode=${boardVo.originno }';"
-												>목록으로</button>
+												name="golistBtn"
+												onclick="location.href='${cp }/boardOneSelect?bcode=${boardVo.originno }';">목록으로</button>
 											<button type="button" class="btn btn-primary" id="reBoardBtn"
 												name="reBoardBtn">답글작성하기</button>
+
 											<button type="button" class="btn btn-primary" id="updateBtn"
-												name="updateBtn">글수정하기</button>
+												name="updateBtn"
+												<c:if test="${S_USER.userid  != boardVo.writer}"> style="display: none;"</c:if>>글수정하기</button>
 										</div>
+
+
+
 									</div>
 									<!-- col-sm-12 -->
 								</div>

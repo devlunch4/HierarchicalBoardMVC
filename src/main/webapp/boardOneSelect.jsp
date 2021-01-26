@@ -137,7 +137,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 														RE :
 														</c:if> <c:choose>
 																<c:when test="${oneBoardList.active == 0}">${oneBoardList.title }</c:when>
-																<c:otherwise>비공개 체크 되어있습니다.</c:otherwise>
+																<c:otherwise>삭제 처리 되었습니다.</c:otherwise>
 															</c:choose></td>
 
 
