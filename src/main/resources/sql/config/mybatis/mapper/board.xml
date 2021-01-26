@@ -92,7 +92,7 @@
 <!-- 게시글 하나 수정 -->
 	<update id="boardOneUpdate" parameterType="boardVo">
 		UPDATE hBoard SET
-		title = #{title}, active =#{active}, context=#{context}, WHERE bcode=#{bcode}
+		title = #{title}, content=#{content}, active =#{active} WHERE bcode=#{bcode}
 	</update>
 
 

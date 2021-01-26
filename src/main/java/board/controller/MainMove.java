@@ -1,9 +1,6 @@
 package board.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import board.model.BoardVo;
 import board.service.BoardService;
 import board.service.BoardServiceI;
-import user.model.UserVo;
 import user.service.UserService;
 import user.service.UserServiceI;
 

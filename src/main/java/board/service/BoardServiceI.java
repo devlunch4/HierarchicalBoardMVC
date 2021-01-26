@@ -23,4 +23,7 @@ public interface BoardServiceI {
 
 	// 글 하나 조회
 	BoardVo boardOneRead(int bcode);
+	
+	// 글 하나 수정
+		int boardOneUpdate(BoardVo boardVo);
 }

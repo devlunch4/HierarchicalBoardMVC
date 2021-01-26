@@ -26,4 +26,5 @@ public interface BoardDaoI {
 	BoardVo boardOneRead(int bcode);
 	
 	// 글 하나 수정
+	int boardOneUpdate(BoardVo boardVo);
 }

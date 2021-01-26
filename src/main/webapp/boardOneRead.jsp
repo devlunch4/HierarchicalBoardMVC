@@ -36,12 +36,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 		//글 수정하기 클릭
 		$("#updateBtn").on("click", function() {
-			alert("글수정하기 클릭")
-			
-			
+			alert("수정 진입"+ $("#active").is(":checked"));
+			var activeValue = $("#active").is(":checked");
+			$("#activeValue").val(activeValue)
 			$("#frm").attr("method", "post");
 			$("#frm").attr("action", "${cp }/boardOneUpdate");
-			$("#frm").submit(); */
+			$("#frm").submit();
 		});
 
 		//답글 작성하기 클릭
@@ -78,9 +78,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				value="${S_USER.userid }" />
 			<!-- 게시판 조회/수정시 사용 bcode, title, active-->
 			<input type="hidden" id="bcode" name="bcode"
-				value="${boardVo.bcode }" />
-				
-				
+				value="${boardVo.bcode }" /> <input type="hidden" id="originno"
+				name="originno" value="${boardVo.originno }" /> <input
+				type="hidden" id="writer" name="writer" value="${boardVo.writer }" />
+			<input type="hidden" id="activeValue" name="activeValue" value="" />
 			<!--  <input type="hidden" id="title"
 				name="title" value="" /> <input type="hidden" id="context"
 				name="context" value="" /><input type="hidden" id="active"
@@ -123,13 +124,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									<div class="col-sm-12">
 										<!-- summernote 추가 -->
 										실제 글번호 : ${boardVo.bcode }<br> 게시판번호 : ${boardVo.originno }<br>
-										글 번호 : ${boardVo.groupord } <br> <br> 작성자 :
-										${boardVo.writer }<br> 제목 : <input type="text" id="title"
-											name="title" value="${boardVo.title }" /> 공개/비공개 <input
-											type="checkbox" id="active" name="active"
+										글 번호 : ${boardVo.groupord } <br> <br> 작성자
+										:${boardVo.writer } <br> 제목 : <input type="text"
+											id="title" name="title" value="${boardVo.title }" /> 공개/비공개
+										<input type="checkbox" id="active" name="active"
 											<c:choose>
-<c:when test="${boardVo.active == 0 }"> value="${boardVo.active }" checked="checked"</c:when>
-<c:otherwise>value="${boardVo.active }"</c:otherwise>
+<c:when test="${boardVo.active == 0 }"> value="0" checked="checked"</c:when>
+<c:otherwise>value="1" </c:otherwise>
 </c:choose>>
 										<br> <br>
 										<textarea id="summernote" name="summernote">
@@ -137,6 +138,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										</textarea>
 										<br>
 										<div style="text-align: right;">
+											<button type="button" class="btn btn-primary" id="golistBtn"
+												name="golistBtn" onclick="location.href='${cp }/boardOneSelect?bcode=${boardVo.originno }';"
+												>목록으로</button>
 											<button type="button" class="btn btn-primary" id="reBoardBtn"
 												name="reBoardBtn">답글작성하기</button>
 											<button type="button" class="btn btn-primary" id="updateBtn"

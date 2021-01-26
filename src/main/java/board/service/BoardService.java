@@ -44,4 +44,11 @@ public class BoardService implements BoardServiceI {
 		return boardDao.boardOneRead(bcode);
 	}
 
+	
+	// 글 하나 수정
+	@Override
+	public int boardOneUpdate(BoardVo boardVo) {
+		return boardDao.boardOneUpdate(boardVo);
+	}
+
 }

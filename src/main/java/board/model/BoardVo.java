@@ -41,6 +41,15 @@ public class BoardVo {
 		this.title = title;
 		this.content = content;
 	}
+	
+	//글 수정시 사용
+	public BoardVo (String title, String content, int active, int bcode) {
+		this.title = title;
+		this.content = content;
+		this.active = active;
+		this.bcode = bcode;
+	}
+	
 
 	public int getBcode() {
 		return bcode;

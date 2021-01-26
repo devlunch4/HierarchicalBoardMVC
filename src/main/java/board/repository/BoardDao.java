@@ -79,4 +79,18 @@ public class BoardDao implements BoardDaoI {
 		return boardVo;
 	}
 
+	// 글 하나 수정
+	@Override
+	public int boardOneUpdate(BoardVo boardVo) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		int boardOneUpdateCnt = sqlSession.update("board.boardOneUpdate", boardVo);
+		if (boardOneUpdateCnt == 1) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return boardOneUpdateCnt;
+	}
+
 }
