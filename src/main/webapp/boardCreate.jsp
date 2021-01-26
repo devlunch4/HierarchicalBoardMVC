@@ -25,44 +25,44 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script src="<c:url value="/js/jquery.min.js" />"></script>
 <!-- summernote script -->
-		<%@ include file="/common/summerNoteScript.jsp"%>
+<%@ include file="/common/summerNoteScript.jsp"%>
 <script type="text/javascript">
 	$(function() {
 
 		//수정 버튼 클릭시-게시판 정보수정/활성상태수정
-		$(".bUpdateBtn")
-				.on(
-						"click",
-						function() {
-							var userid = $("#userid").val();
+		$(".bUpdateBtn").on(
+				"click",
+				function() {
+					var userid = $("#userid").val();
 
-							var bcode = $(this).data("bcode");
-							var title = $("#title" + bcode).val();
-							var active = $("#activeSlt" + bcode).val();
-							
-							$("#bcode").val(bcode);
-							$("#title").val(title);
-							$("#active").val(active);
-							alert("게시판 수정 클릭후 hidden frm 설정 \n bcode 값: "
-									+ bcode + "\n title 값: " + title
-									+ "\n active 값: " + active +"\n 사용자 아이디 : "+userid);
-							$("#frm").attr("method", "post");
-							$("#frm").attr("action", "${cp }/boardActUpdate");
-							$("#frm").submit();
-						});
+					var bcode = $(this).data("bcode");
+					var title = $("#title" + bcode).val();
+					var active = $("#activeSlt" + bcode).val();
+
+					$("#bcode").val(bcode);
+					$("#title").val(title);
+					$("#active").val(active);
+					alert("게시판 수정 클릭후 hidden frm 설정 \n bcode 값: " + bcode
+							+ "\n title 값: " + title + "\n active 값: " + active
+							+ "\n 사용자 아이디 : " + userid);
+					$("#frm").attr("method", "post");
+					$("#frm").attr("action", "${cp }/boardActUpdate");
+					$("#frm").submit();
+				});
 
 		//게시판 추가버튼 클릭시
 		$("#addBoardBtn").on(
 				"click",
 				function() {
 					var userid = $("#userid").val();
-					
+
 					var addBoardName = $("#addBoardName").val();
 					$("#addBName").val(addBoardName);
 					var addBName = $("#addBName").val();
 					alert("검색게시판 추가 \n 클릭후 hidden frm 설정 \n bcode 값: " + bcode
 							+ "\n title 값: " + title + "\n active 값: " + active
-							+ "\n\n\n" + "추가할 게시판 이름 : " + addBName +"\n 사용자 아이디 : "+userid);
+							+ "\n\n\n" + "추가할 게시판 이름 : " + addBName
+							+ "\n 사용자 아이디 : " + userid);
 					//userid, title.
 					$("#frm").attr("method", "post");
 					$("#frm").attr("action", "${cp }/boardCreateMove");
@@ -82,7 +82,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<!-- 넘겨줄 히든 값. -->
 		<form id="frm">
 			<!-- 사용자 아이디 값 -->
-			<input type="hidden" id="userid" name="userid" value="${S_USER.userid }" />
+			<input type="hidden" id="userid" name="userid"
+				value="${S_USER.userid }" />
 			<!-- 게시판 조회/수정시 사용 bcode, title, active-->
 			<input type="hidden" id="bcode" name="bcode" value="" /> <input
 				type="hidden" id="title" name="title" value="" /> <input
@@ -148,6 +149,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									</div>
 								</c:forEach>
 							</form>
+							<hr>
+							<div style="margin-left: 10%;">
+								<c:forEach items="${boardList }" var="boardList">
+									<div
+										<c:if test="${boardList.active == '1' }"> style="display: none;"</c:if>>
+										<div class="info">
+											<div class="row">
+												<a class="col-md-8"
+													href="/boardOneSelect?bcode=${boardList.bcode }"
+													<c:if test="${boardList.active == '1' }"> style="display: none;"</c:if>>${boardList.title }</a>
+											</div>
+										</div>
+									</div>
+								</c:forEach>
+							</div>
 						</div>
 						<!-- card-body -->
 						<!-- card-footer -->

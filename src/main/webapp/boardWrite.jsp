@@ -112,7 +112,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<textarea id="summernote" name="summernote">
 											<p>Hello Summernote</p>
 										</textarea>
+											
 										<div style="text-align: right;">
+										<button type="button" class="btn btn-primary" id="golistBtn"
+												name="golistBtn"
+												onClick="history.go(-1)">목록으로</button>
 											<button type="button" class="btn btn-primary" id="writeBtn"
 												name="writeBtn">글작성완료</button>
 										</div>

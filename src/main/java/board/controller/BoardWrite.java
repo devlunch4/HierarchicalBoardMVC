@@ -95,6 +95,7 @@ public class BoardWrite extends HttpServlet {
 			// 정상수행
 			logger.debug("BoardWrite 정상수행");
 			resp.sendRedirect(req.getContextPath() + "/boardOneSelect?bcode=" + parentBcode);
+
 		} else {
 			// 비정상수행
 			logger.debug("BoardWrite 비정상수행");
