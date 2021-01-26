@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import board.model.BoardVo;
+import board.model.ReplyVo;
 import board.repository.BoardDao;
 import board.repository.BoardDaoI;
 import common.model.PageVo;
@@ -42,21 +43,22 @@ public class BoardService implements BoardServiceI {
 		// TODO Auto-generated method stub
 		return boardDao.boardWrite(boardVo);
 	}
+
 	// 글 하나 조회
 	@Override
 	public BoardVo boardOneRead(int bcode) {
 		return boardDao.boardOneRead(bcode);
 	}
 
-	
 	// 글 하나 수정
 	@Override
 	public int boardOneUpdate(BoardVo boardVo) {
 		return boardDao.boardOneUpdate(boardVo);
 	}
-	//게시글 페이징
+
+	// 게시글 페이징
 	@Override
-	public Map<String, Object>  selectPagingBoard(PageVo pagevo) {
+	public Map<String, Object> selectPagingBoard(PageVo pagevo) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<BoardVo> boardList = boardDao.selectPagingBoard(pagevo);
 		int boardCnt = boardDao.selectAllOneBoardCnt(pagevo.getBcode());
@@ -64,7 +66,11 @@ public class BoardService implements BoardServiceI {
 		map.put("boardCnt", boardCnt);
 		return map;
 	}
-	
-	
+
+	// 해당 게시판의 댓글 조회
+	@Override
+	public List<ReplyVo> selectBoardReply(int bcode) {
+		return boardDao.selectBoardReply(bcode);
+	}
 
 }

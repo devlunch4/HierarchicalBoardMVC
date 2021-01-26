@@ -33,6 +33,7 @@
 	<mappers>
 		<mapper resource="sql/config/mybatis/mapper/users.xml" />
 		<mapper resource="sql/config/mybatis/mapper/board.xml" />
+		<mapper resource="sql/config/mybatis/mapper/reply.xml" />
 	</mappers>
 
 </configuration>

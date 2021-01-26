@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import board.model.BoardVo;
+import board.model.ReplyVo;
 import common.model.PageVo;
 import db.MybatisUtil;
 import user.model.UserVo;
@@ -94,9 +95,8 @@ public class BoardDao implements BoardDaoI {
 		sqlSession.close();
 		return boardOneUpdateCnt;
 	}
-	
-	
-	//페이징 선택에 따른 게시글 조회
+
+	// 페이징 선택에 따른 게시글 조회
 	@Override
 	public List<BoardVo> selectPagingBoard(PageVo pagevo) {
 		SqlSession sqlSession = MybatisUtil.getSqlSession();
@@ -104,13 +104,23 @@ public class BoardDao implements BoardDaoI {
 		sqlSession.close();
 		return pageList;
 	}
+
 	// 해당 게시글 전체수 조회
 	@Override
 	public int selectAllOneBoardCnt(int bcode) {
 		SqlSession sqlSession = MybatisUtil.getSqlSession();
-		int boardCnt = sqlSession.selectOne("board.selectAllOneBoardCnt",bcode);
+		int boardCnt = sqlSession.selectOne("board.selectAllOneBoardCnt", bcode);
 		sqlSession.close();
 		return boardCnt;
+	}
+
+	// 해당 게시글의 댓글 조회
+	@Override
+	public List<ReplyVo> selectBoardReply(int bcode) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		List<ReplyVo> reaplyList = sqlSession.selectList("reply.selectBoardReply", bcode);
+		sqlSession.close();
+		return reaplyList;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import board.model.BoardVo;
+import board.model.ReplyVo;
 import common.model.PageVo;
 
 public interface BoardServiceI {
@@ -30,5 +31,8 @@ public interface BoardServiceI {
 	int boardOneUpdate(BoardVo boardVo);
 
 	// 게시글 페이징
-	Map<String, Object>  selectPagingBoard(PageVo pagevo);
+	Map<String, Object> selectPagingBoard(PageVo pagevo);
+
+	// 해당 게시판의 댓글 조회
+	List<ReplyVo> selectBoardReply(int bcode);
 }
