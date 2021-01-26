@@ -179,3 +179,27 @@ INSERT INTO hboard (
 );
 
 commit;
+
+INSERT INTO hreply(
+RCODE,
+BCODE,
+ACTIVE,
+CONTENT,
+WRITER,
+REG_DATETIME
+)VALUES(
+SEQ_HREPLY.NEXTVAL, 5,0,'첫번째 댓글입니다','sally',sysdate
+);
+
+INSERT INTO hreply(
+RCODE,
+BCODE,
+ACTIVE,
+CONTENT,
+WRITER,
+REG_DATETIME
+)VALUES(
+SEQ_HREPLY.NEXTVAL, 5,0,'두번째 댓글입니다','sally',sysdate
+);
+
+commit;

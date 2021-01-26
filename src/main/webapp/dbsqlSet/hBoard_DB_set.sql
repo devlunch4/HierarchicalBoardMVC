@@ -86,7 +86,7 @@ CREATE TABLE hreply (
 	rcode INTEGER NOT NULL, /* 댓글번호 */
 	bcode INTEGER NOT NULL, /* 게시글판번호 */
 	active INTEGER NOT NULL, /* 활성 */
-	content CLOB, /* 내용 */
+	content VARCHAR2(500 char), /* 내용 */
 	writer VARCHAR2(255), /* 작성자 */
 	reg_datetime DATE /* 작성일 */
 );
@@ -178,7 +178,6 @@ ALTER TABLE hfile
 		REFERENCES hboard (
 			bcode
 		);
-commit;
 --//
 -- insert 값 시  해당 입력될 컬럼 위치에 SEQ_BOARD.NEXTVAL 값 입력
 -- 현재 생성된 시퀀스 값 조회 SELECT SEQ_BOARD.CURRVAL FROM DUAL;
