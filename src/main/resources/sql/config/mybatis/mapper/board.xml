@@ -95,6 +95,9 @@
 		title = #{title}, content=#{content}, active =#{active} WHERE bcode=#{bcode}
 	</update>
 
+<!-- 게시글 답글 작성 -->
+
+
 
 	<!-- -->
 	<!-- -->

@@ -36,15 +36,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			$("#bcode").val(bcode);
 			var writer = $(this).data("writer");
 			$("#writer").val(writer);
-			
+
 			$("#frm").attr("method", "post");
 			$("#frm").attr("action", "${cp}/readOneBoard");
 			$("#frm").submit();
 		});
 
-		
-		
-		
 		//글쓰기 버튼 클릭시
 		$("#writeBtn").on("click", function() {
 			$("#frm").attr("method", "get");
@@ -129,10 +126,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												</tr>
 												<c:forEach items="${oneBoardList }" var="oneBoardList"
 													varStatus="loop">
-													<tr class="oneBoard" data-bcode="${oneBoardList.bcode }" data-writer="${oneBoardList.writer }">
-
+													<tr class="oneBoard" data-bcode="${oneBoardList.bcode }"
+														data-writer="${oneBoardList.writer }">
 														<td>${oneBoardList.groupord }</td>
-														<td>${oneBoardList.title }</td>
+
+
+
+														<td><c:if test="${oneBoardList.grouplayer > 1}">
+																<c:forEach begin="1" end="${oneBoardList.grouplayer }">&nbsp;&nbsp; </c:forEach>
+														RE :
+														</c:if>${oneBoardList.title }</td>
+
+
+
 														<td>${oneBoardList.writer }</td>
 														<td><fmt:formatDate
 																value="${oneBoardList.reg_datetime }"

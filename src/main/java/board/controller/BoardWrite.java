@@ -61,9 +61,9 @@ public class BoardWrite extends HttpServlet {
 		// String groupord = req.getParameter("groupord");
 		int groupord = oneBoardList.size() + 1;
 
-		// grouplayer 게시판의 첫글 글 작성시 layer무조건 1
-		// String grouplayer = req.getParameter("grouplayer");
-		int grouplayer = 1;
+		// grouplayer 게시판의 첫글 글 작성시 layer무조건 =1 >> jsp 에서 설정함.
+		int grouplayer = Integer.parseInt(req.getParameter("grouplayer"));
+		
 
 		// 글쓴이
 		String writer = req.getParameter("userid");

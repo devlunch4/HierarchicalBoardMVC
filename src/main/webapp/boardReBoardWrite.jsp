@@ -60,8 +60,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- 게시판 조회/수정시 사용 bcode, title, active-->
 			<input type="hidden" id="parentBcode" name="parentBcode"
 				value="${parentBcode }" />
-			<input type="hidden" id="grouplayer" name="grouplayer"
-				value="1" />	
 			<!-- <input type="hidden" id="bcode"
 				name="bcode" value="" /> <input type="hidden" id="title"
 				name="title" value="" /> <input type="hidden" id="context"
@@ -79,11 +77,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<div class="container-fluid">
 							<div class="row md-2">
 								<div class="col-sm-6">
-									<h1>글 작성</h1>
+									<h1>답글 작성</h1>
 								</div>
 								<div class="col-sm-6">
 									<ol class="breadcrumb float-sm-right">
-										<li class="breadcrumb-item">글</li>
+										<li class="breadcrumb-item">답글</li>
 										<li class="breadcrumb-item">작성</li>
 									</ol>
 								</div>
@@ -98,7 +96,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<%@ include file="/common/cardheadersearchbar.jsp"%> --%>
 							<div class="card-body" style="text-align: left;">
 								<div>${S_USER.userid }님
-									<br>글작성을 할수 있습니다.
+									<br>답글작성을 할수 있습니다.
 								</div>
 								<hr>
 								<div class="row">
@@ -111,8 +109,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										</textarea>
 										<div style="text-align: right;">
 											<button type="button" class="btn btn-primary" id="writeBtn"
-												name="writeBtn">글작성완료</button>
+												name="writeBtn">답글 작성완료</button>
 										</div>
+										<button type="button" class="btn btn-primary" id="golistBtn"
+												name="golistBtn" onclick="location.href='${cp }/boardOneSelect?bcode=${boardVo.originno }';"
+												>답글작성취소</button>
+										
 									</div>
 									<!-- col-sm-12 -->
 								</div>
