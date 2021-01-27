@@ -27,7 +27,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- summernote script -->
 <%@ include file="/common/summerNoteScript.jsp"%>
 <script>
-	
+	$(document).ready(function() {
+		$('#summernote').summernote();
+	});
 </script>
 
 <script type="text/javascript">
@@ -117,7 +119,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 						<!-- 넘겨줄 히든 값. -->
-						<form id="frm">
+						<form id="frm" enctype="multipart/form-data">
 							<!-- 사용자 아이디 값 -->
 							<input type="hidden" id="userid" name="userid"
 								value="${S_USER.userid }" />

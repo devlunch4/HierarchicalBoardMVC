@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import board.model.ReplyVo;
 import board.service.BoardService;
 import board.service.BoardServiceI;
 
+@MultipartConfig
 @WebServlet("/readOneBoard")
 public class BoardOneRead extends HttpServlet {
 	private static final long serialVersionUID = 1L;
