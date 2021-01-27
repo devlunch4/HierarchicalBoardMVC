@@ -56,7 +56,7 @@
 		originno= #{value} and groupord
 		!= 0
 		ORDER BY originno, groupord DESC,
-		grouplayer, reg_datetime DESC
+		grouplayer,  bcode DESC, reg_datetime DESC
 	</select>
 	<!-- 선택한 게시판 게시글 수 조회 -->
 	<select id="selectAllOneBoardCnt" parameterType="pageVo"
@@ -65,15 +65,17 @@
 		FROM
 		hboard
 		WHERE
-		originno= #{bcode} and groupord != 0
+		originno= #{bcode} and
+		groupord != 0
 		ORDER BY
 		originno, groupord DESC,
-		grouplayer, reg_datetime DESC
+		grouplayer, reg_datetime
+		DESC
 
 	</select>
 
 
-
+	<!-- 하나의게시판 페이징 처리 -->
 	<select id="selectPagingBoard" resultType="boardVo"
 		parameterType="pageVo">
 		SELECT *
@@ -86,7 +88,7 @@
 		WHERE originno=
 		#{bcode} and groupord != 0
 		ORDER BY originno,
-		groupord DESC, grouplayer, reg_datetime DESC) a
+		groupord DESC, grouplayer, bcode DESC, reg_datetime DESC) a
 		WHERE
 		ROWNUM &lt;=
 		#{page} * #{pageSize})

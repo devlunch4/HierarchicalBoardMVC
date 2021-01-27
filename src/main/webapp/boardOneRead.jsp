@@ -58,6 +58,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			$("#frm").submit(); */
 		});
 
+		//댓글 삭제 체크박스 클릭
+		/* $("#replyActive").change(function () {
+			if($("#replyActive").is(":checked")){
+	            alert("체크박스 체크했음!");
+	        }else{
+	            alert("체크박스 체크 해제!");
+	        
+		});
+			 */
+		
 	});
 </script>
 
@@ -101,6 +111,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<input type="hidden" id="userid" name="userid"
 								value="${S_USER.userid }" />
 							<!-- 게시판 조회/수정시 사용 bcode, title, active-->
+							<!-- 현재글의 bcode -->
 							<input type="hidden" id="bcode" name="bcode"
 								value="${boardVo.bcode }" /> <input type="hidden" id="originno"
 								name="originno" value="${boardVo.originno }" /> <input
@@ -125,21 +136,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<div class="row">
 									<div class="col-sm-12">
 										<!-- summernote 추가 -->
-										실제 글번호 : ${boardVo.bcode }<br> 게시판번호 : ${boardVo.originno }<br>
-										글 번호 : ${boardVo.groupord } <br>
-
-
+										실제 글번호 : ${boardVo.bcode } / 게시판번호 : ${boardVo.originno } / 글
+										번호 : ${boardVo.groupord } <br>
 										<hr>
-										작성자 : <input value="${boardVo.writer }" readonly="readonly"/> <br>
-										제&nbsp;&nbsp;&nbsp;목 : <input type="text" id="title"
-											name="title" value="${boardVo.title }" readonly="readonly"/> 공개/삭제 <input
-											type="checkbox" id="active" name="active"
+										작성자 : <input value="${boardVo.writer }" readonly="readonly" />
+										<br> 제&nbsp;&nbsp;&nbsp;목 : <input type="text" id="title"
+											name="title" value="${boardVo.title }" readonly="readonly" />
+										공개/삭제 <input type="checkbox" id="active" name="active"
 											<c:choose>
 <c:when test="${boardVo.active == 0 }"> value="0" checked="checked"</c:when>
 <c:otherwise>value="1" </c:otherwise>
 </c:choose>>
 										<br> <br>
-										<textarea id="summernote" name="summernote" readonly="readonly">
+										<textarea id="summernote" name="summernote"
+											readonly="readonly">
 											${boardVo.content }
 										</textarea>
 										<hr>
@@ -161,16 +171,46 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<!-- card-body -->
 							<!-- card-footer -->
 						</form>
-						<div style="margin-left: 5%;">*** 댓글 보기 ***</div>
-						<div style="margin-left: 5%;">*** 댓글 작성 ***</div>
-						<form id="frm2" name="frm2" action="">
+						<form id="frm2" name="frm2">
+							<input type="hidden" id="replybcode" name="replybcode"
+								value="${boardVo.bcode }" />
+
+							<div style="margin-left: 5%;">*** 댓글 보기 ***</div>
+							<table class="table table-bordered">
+								<tr>
+									<th>작성자</th>
+									<th>댓글내용</th>
+									<th>작성시간</th>
+									<th>삭제</th>
+								</tr>
+								<c:forEach items="${replyList }" var="replyList">
+									<tr class="oneReply" data-rcode="${replyList.rcode }">
+										<td>${replyList.writer }</td>
+										<td><c:choose>
+												<c:when test="${replyList.active == 0}">${replyList.content }</c:when>
+												<c:otherwise>삭제 처리 되었습니다.</c:otherwise>
+											</c:choose></td>
+										<td><fmt:formatDate value="${replyList.reg_datetime }"
+												pattern="yyyy-MM-dd HH:mm:ss" /></td>
+										<td> <input type="checkbox" id="replyActive"
+											name="replyActive"<c:if test="${S_USER.userid  != boardVo.writer}"> style="display: none;"</c:if>
+											<c:choose>
+<c:when test="${replyList.active == 0 }"> value="0" checked="checked"</c:when>
+<c:otherwise>value="1" </c:otherwise>
+</c:choose>> <c:if test="${S_USER.userid  != boardVo.writer}">권한없음</c:if> </td>
+									</tr>
+								</c:forEach>
+							</table>
+							<hr>
+							<div style="margin-left: 5%;">*** 댓글 작성 ***</div>
+
 							<div style="text-align: left;">
-								<textarea id="replycontext" name="replycontext" rows="3"
+								<textarea id="replyContent" name="replyContent" rows="3"
 									cols="120"></textarea>
 							</div>
 							<div style="text-align: right;">
-								<button type="submit" class="btn btn-primary" id="replyBtn"
-									name="replyBtn">댓글작성완료</button>
+								<button type="submit" class="btn btn-primary" id="replyWriteBtn"
+									name="replyWriteBtn">댓글작성완료</button>
 							</div>
 							<br> <br>
 						</form>

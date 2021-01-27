@@ -1,6 +1,7 @@
 package board.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import board.model.BoardVo;
+import board.model.ReplyVo;
 import board.service.BoardService;
 import board.service.BoardServiceI;
 
@@ -35,12 +37,22 @@ public class BoardOneRead extends HttpServlet {
 
 		// 하나의 정보를 확인
 		BoardVo boardVo = (BoardVo) boardService.boardOneRead(bcode);
+		
+		
+		//댓글 관련 시작
+		List<ReplyVo> replyList = boardService.selectBoardReply(bcode);
+		logger.debug("댓글 목록내 댓글 수 : {}", replyList.size());
+		
 
 		if (boardVo.getActive() == 1) {
 			resp.sendRedirect(req.getContextPath() + "/boardOneSelect?bcode=" + boardVo.getOriginno());
 		} else {
-
+//해당 게시글 하나의 정보 세팅
 			req.setAttribute("boardVo", boardVo);
+			
+			//해당 게시글에 대한 댓글들 출력
+			req.setAttribute("replyList", replyList);
+			
 			logger.debug(boardVo.getContent());
 			// 전송
 			req.getRequestDispatcher("/boardOneRead.jsp").forward(req, resp);
