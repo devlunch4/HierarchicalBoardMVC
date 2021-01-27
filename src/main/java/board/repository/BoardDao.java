@@ -25,7 +25,7 @@ public class BoardDao implements BoardDaoI {
 	@Override
 	public int addBoard(BoardVo boardVo) {
 		SqlSession sqlSession = MybatisUtil.getSqlSession();
-		int addBoardCnt = sqlSession.update("board.addBoard", boardVo);
+		int addBoardCnt = sqlSession.insert("board.addBoard", boardVo);
 		if (addBoardCnt == 1) {
 			sqlSession.commit();
 		} else {
@@ -121,6 +121,20 @@ public class BoardDao implements BoardDaoI {
 		List<ReplyVo> reaplyList = sqlSession.selectList("reply.selectBoardReply", bcode);
 		sqlSession.close();
 		return reaplyList;
+	}
+
+	// 댓글 등록
+	@Override
+	public int replyWrite(ReplyVo replyVo) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		int replyWriteCnt = sqlSession.update("reply.replyWrite", replyVo);
+		if (replyWriteCnt == 1) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return replyWriteCnt;
 	}
 
 }

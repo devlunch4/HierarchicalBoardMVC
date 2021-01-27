@@ -37,4 +37,7 @@ public interface BoardDaoI {
 
 	// 해당 게시판의 댓글 조회
 	List<ReplyVo> selectBoardReply(int bcode);
+	
+	// 댓글 등록
+	int replyWrite(ReplyVo replyVo);
 }

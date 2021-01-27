@@ -73,4 +73,11 @@ public class BoardService implements BoardServiceI {
 		return boardDao.selectBoardReply(bcode);
 	}
 
+	@Override
+	public int replyWrite(ReplyVo replyVo) {
+		return boardDao.replyWrite(replyVo);
+	}
+
+	
+	
 }

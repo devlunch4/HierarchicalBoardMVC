@@ -2,6 +2,7 @@ package board.dao;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import board.model.BoardVo;
+import board.model.ReplyVo;
 import board.repository.BoardDao;
 import board.repository.BoardDaoI;
 import common.model.PageVo;
@@ -120,32 +122,53 @@ public class BoardDaoTest {
 		/*** Then ***/
 		assertEquals(1, boardOneUpdateCnt);
 	}
-	
-	//게시글 페이징
+
+	// 게시글 페이징
 	@Test
 	public void selectPagingBoardTest() {
-		/***Given***/
-		PageVo pagevo = new PageVo(2,2,2);
+		/*** Given ***/
+		PageVo pagevo = new PageVo(2, 2, 2);
 
-		/***When***/
-		List<BoardVo> boardList = boardDao.selectPagingBoard( pagevo);
-		/***Then***/
+		/*** When ***/
+		List<BoardVo> boardList = boardDao.selectPagingBoard(pagevo);
+		/*** Then ***/
 		assertEquals(2, boardList.size());
-		 
+
 	}
-	
+
 	// 해당 게시글 전체수 조회
 	@Test
 	public void selectAllOneBoardCntTest() {
-			/***Given***/
-			int bcode = 2;
+		/*** Given ***/
+		int bcode = 2;
 
-			/***When***/
-			int selectAllOneBoardCnt = boardDao.selectAllOneBoardCnt(bcode);
-			/***Then***/
-			assertEquals(4, selectAllOneBoardCnt);
-		}
-	
-	
+		/*** When ***/
+		int selectAllOneBoardCnt = boardDao.selectAllOneBoardCnt(bcode);
+		/*** Then ***/
+		assertEquals(4, selectAllOneBoardCnt);
+	}
+
+	// 해당 게시판의 댓글 조회
+	@Test
+	public void selectBoardReplyTest() {
+		/*** Given ***/
+
+		/*** When ***/
+
+		/*** Then ***/
+	}
+
+	// 댓글 등록
+	@Test
+	public void replyWriteTest() {
+		/*** Given ***/
+		Date date = new Date();
+		ReplyVo replyVo = new ReplyVo(0, 5, 0, "댓글테스트", "댓글작성자", date);
+
+		/*** When ***/
+		int replyWriteCnt = boardDao.replyWrite(replyVo);
+		/*** Then ***/
+		assertEquals(1, replyWriteCnt);
+	}
 
 }

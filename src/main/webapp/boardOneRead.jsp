@@ -27,10 +27,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- summernote script -->
 <%@ include file="/common/summerNoteScript.jsp"%>
 <script>
-	$(document).ready(function() {
-		$('#summernote').summernote();
-	});
+	
 </script>
+
 <script type="text/javascript">
 	$(function() {
 
@@ -50,24 +49,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			$("#frm").submit();
 		});
 
+		
+		//$("#replyBtn").on("click", function() {
 		//댓글 작성하기 클릭
-		$("#replyBtn").on("click", function() {
-			alert("댓글 작성하기 클릭")
-			/* $("#frm").attr("method", "post");
-			$("#frm").attr("action", "${cp }/replyWrite");
-			$("#frm").submit(); */
+		$("#replyWriteBtn").on("click", function() {
+			//필요 정보 
+			//원글replyBcode ok
+			//활성값 replyActive 0 set
+			$("#replyActive").val(0);
+			//내용 replyContent ok
+			//작성자 replyWriter ok
+			//날짜 servlet auto
+			$("#frm2").attr("method", "post");
+			$("#frm2").attr("action", "${cp }/replyWrite");
+			$("#frm2").submit();
+		});
+
+		$("#replyActiveBox").on("click", function() {
+			alert("삭제 상태 설정됩니다.")
+			//삭제시 필요
+			//rcode
+			//상태값
+			$("#frm2").attr("method", "post");
+			$("#frm2").attr("action", "${cp }/replyUpdate");
+			$("#frm2").submit();
+			
 		});
 
 		//댓글 삭제 체크박스 클릭
 		/* $("#replyActive").change(function () {
 			if($("#replyActive").is(":checked")){
-	            alert("체크박스 체크했음!");
-	        }else{
-	            alert("체크박스 체크 해제!");
-	        
+		        alert("체크박스 체크했음!");
+		    }else{
+		        alert("체크박스 체크 해제!");
+		    
 		});
-			 */
-		
+		 */
+
 	});
 </script>
 
@@ -143,6 +161,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<br> 제&nbsp;&nbsp;&nbsp;목 : <input type="text" id="title"
 											name="title" value="${boardVo.title }" readonly="readonly" />
 										공개/삭제 <input type="checkbox" id="active" name="active"
+											onclick="checkbox"
 											<c:choose>
 <c:when test="${boardVo.active == 0 }"> value="0" checked="checked"</c:when>
 <c:otherwise>value="1" </c:otherwise>
@@ -172,8 +191,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<!-- card-footer -->
 						</form>
 						<form id="frm2" name="frm2">
-							<input type="hidden" id="replybcode" name="replybcode"
-								value="${boardVo.bcode }" />
+							<input type="hidden" id="replyBcode" name="replyBcode"
+								value="${boardVo.bcode }" /> <input type="hidden"
+								id="replyRcode" name="replyRcode" value="" /> <input
+								type="hidden" id="replyActive" name="replyActive" value="" /> <input
+								type="hidden" id="replyWriter" name="replyWriter"
+								value="${S_USER.userid }" />
+
 
 							<div style="margin-left: 5%;">*** 댓글 보기 ***</div>
 							<table class="table table-bordered">
@@ -181,7 +205,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									<th>작성자</th>
 									<th>댓글내용</th>
 									<th>작성시간</th>
-									<th>삭제</th>
+									<th>체크해제시 바로 삭제</th>
 								</tr>
 								<c:forEach items="${replyList }" var="replyList">
 									<tr class="oneReply" data-rcode="${replyList.rcode }">
@@ -192,12 +216,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											</c:choose></td>
 										<td><fmt:formatDate value="${replyList.reg_datetime }"
 												pattern="yyyy-MM-dd HH:mm:ss" /></td>
-										<td> <input type="checkbox" id="replyActive"
-											name="replyActive"<c:if test="${S_USER.userid  != boardVo.writer}"> style="display: none;"</c:if>
+										<td><input type="checkbox" id="replyActiveBox"
+											name="replyActiveBox"
+											<c:if test="${S_USER.userid  != boardVo.writer}"> style="display: none;"</c:if>
 											<c:choose>
 <c:when test="${replyList.active == 0 }"> value="0" checked="checked"</c:when>
 <c:otherwise>value="1" </c:otherwise>
-</c:choose>> <c:if test="${S_USER.userid  != boardVo.writer}">권한없음</c:if> </td>
+</c:choose>>
+											<c:if test="${S_USER.userid  != boardVo.writer}">권한없음</c:if>
+										</td>
 									</tr>
 								</c:forEach>
 							</table>
@@ -209,7 +236,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									cols="120"></textarea>
 							</div>
 							<div style="text-align: right;">
-								<button type="submit" class="btn btn-primary" id="replyWriteBtn"
+								<button type="button" class="btn btn-primary" id="replyWriteBtn"
 									name="replyWriteBtn">댓글작성완료</button>
 							</div>
 							<br> <br>

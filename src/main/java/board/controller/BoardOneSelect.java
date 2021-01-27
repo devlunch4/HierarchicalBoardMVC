@@ -26,6 +26,8 @@ public class BoardOneSelect extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.debug("IN doGet()");
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
 		// 선택된 게시판의 bcode == 게시판 번호
 		String bcode = req.getParameter("bcode");
 		int ibcode = Integer.parseInt(bcode);

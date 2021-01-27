@@ -24,6 +24,8 @@ public class BoardReWriteMove extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.debug("답글작성 doPost()");
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
 
 		// 해당 글의 부모값 가져오기
 		int parentbcode = Integer.parseInt(req.getParameter("bcode"));

@@ -31,6 +31,9 @@ public class MainMove extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.debug("doPost()");
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		
 
 		logger.debug("메인페이지 진입");
 		// 조회된 게시판 리스트화

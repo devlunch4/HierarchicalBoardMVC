@@ -28,8 +28,10 @@ public class PagingBoard extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		logger.debug("doGet() 진입완료");
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		
 		// 파라미터 설정
 		String pageParam = req.getParameter("page");
 		String pageSizeParam = req.getParameter("pagesize");

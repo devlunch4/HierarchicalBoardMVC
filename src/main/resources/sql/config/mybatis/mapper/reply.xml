@@ -4,10 +4,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="reply">
-	
-<select id="selectBoardReply" resultType="replyVo" parameterType="int">
-SELECT * FROM hreply WHERE bcode = #{bcode}
-</select>
+
+	<select id="selectBoardReply" resultType="replyVo"
+		parameterType="int">
+		SELECT * FROM hreply WHERE bcode = #{bcode} ORDER BY reg_datetime
+	</select>
+
+	<insert id="replyWrite" parameterType="boardVo">
+		INSERT INTO hreply (
+		rcode,
+		bcode,
+		active,
+		content,
+		writer,
+		reg_datetime
+		) VALUES (
+		seq_hreply.NEXTVAL,
+		#{bcode},
+		#{active},
+		#{content},
+		#{writer},
+		#{reg_datetime}
+		)
+	</insert>
+
 
 
 </mapper>
