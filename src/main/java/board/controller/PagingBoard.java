@@ -39,7 +39,8 @@ public class PagingBoard extends HttpServlet {
 		List<BoardVo> boardList = boardService.selectAllBoard();
 		req.setAttribute("boardList", boardList);
 		logger.debug("조회된 전체 list 목록 수 {}", boardList.size());
-
+		BoardVo boardVo = (BoardVo) boardService.boardOneRead(bcode);
+		String title = boardVo.getTitle();
 		
 		// 페이징 처리를 위한 설정
 		// 삼항연산자를 통한 null값 처리
@@ -68,6 +69,7 @@ public class PagingBoard extends HttpServlet {
 		req.setAttribute("pagination", pagination);
 		req.setAttribute("pagevo", pagevo);
 		req.setAttribute("bcode", bcode);
+		req.setAttribute("boardtitle", title);
 
 		// 송신
 		req.getRequestDispatcher("/boardOneSelectPage.jsp").forward(req, resp);
