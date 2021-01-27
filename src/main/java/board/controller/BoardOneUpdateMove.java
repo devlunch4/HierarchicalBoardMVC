@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ import org.slf4j.LoggerFactory;
 import board.model.BoardVo;
 import board.service.BoardService;
 import board.service.BoardServiceI;
-
+@MultipartConfig
 @WebServlet("/boardOneUpdateMove")
 public class BoardOneUpdateMove extends HttpServlet {
 	private static final long serialVersionUID = 1L;

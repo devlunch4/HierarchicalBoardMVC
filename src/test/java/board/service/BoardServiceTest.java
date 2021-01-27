@@ -2,6 +2,7 @@ package board.service;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import board.model.BoardVo;
+import board.model.ReplyVo;
 import common.model.PageVo;
 
 public class BoardServiceTest {
@@ -132,5 +134,18 @@ public class BoardServiceTest {
 		assertEquals(2, boardVo.size());
 		assertEquals(4, boardCnt);
 	}
+	
+	// 댓글 등록
+		@Test
+		public void replyWriteTest() {
+			/*** Given ***/
+			Date date = new Date();
+			ReplyVo replyVo = new ReplyVo(0, 5, 0, "댓글테스트", "댓글작성자", date);
+
+			/*** When ***/
+			int replyWriteCnt = boardService.replyWrite(replyVo);
+			/*** Then ***/
+			assertEquals(1, replyWriteCnt);
+		}
 
 }

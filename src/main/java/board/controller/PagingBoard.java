@@ -28,8 +28,10 @@ public class PagingBoard extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		logger.debug("doGet() 진입완료");
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		
 		// 파라미터 설정
 		String pageParam = req.getParameter("page");
 		String pageSizeParam = req.getParameter("pagesize");
@@ -39,7 +41,8 @@ public class PagingBoard extends HttpServlet {
 		List<BoardVo> boardList = boardService.selectAllBoard();
 		req.setAttribute("boardList", boardList);
 		logger.debug("조회된 전체 list 목록 수 {}", boardList.size());
-
+		BoardVo boardVo = (BoardVo) boardService.boardOneRead(bcode);
+		String title = boardVo.getTitle();
 		
 		// 페이징 처리를 위한 설정
 		// 삼항연산자를 통한 null값 처리
@@ -68,6 +71,7 @@ public class PagingBoard extends HttpServlet {
 		req.setAttribute("pagination", pagination);
 		req.setAttribute("pagevo", pagevo);
 		req.setAttribute("bcode", bcode);
+		req.setAttribute("boardtitle", title);
 
 		// 송신
 		req.getRequestDispatcher("/boardOneSelectPage.jsp").forward(req, resp);

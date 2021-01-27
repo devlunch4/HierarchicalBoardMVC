@@ -3,6 +3,7 @@ package board.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import board.model.BoardVo;
 import board.service.BoardService;
 import board.service.BoardServiceI;
 
+@MultipartConfig
 @WebServlet("/boardReWriteMove")
 public class BoardReWriteMove extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,6 +26,8 @@ public class BoardReWriteMove extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.debug("답글작성 doPost()");
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
 
 		// 해당 글의 부모값 가져오기
 		int parentbcode = Integer.parseInt(req.getParameter("bcode"));

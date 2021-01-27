@@ -41,9 +41,9 @@
 </head>
 <body class="hold-transition login-page">
 		UNT_CD : ${param.UNT_CD} /
-		<%=request.getParameter("UNT_CD")%>
+		<%-- <%=request.getParameter("UNT_CD")%> --%>
 		<br> cp: ${cp } /
-		<%=application.getAttribute("cp")%>
+		<%-- <%=application.getAttribute("cp")%> --%>
 
 
 	<div class="login-box">

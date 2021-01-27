@@ -31,6 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		$('#summernote').summernote();
 	});
 </script>
+
 <script type="text/javascript">
 	$(function() {
 
@@ -50,12 +51,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			$("#frm").submit();
 		});
 
+		//$("#replyBtn").on("click", function() {
 		//댓글 작성하기 클릭
-		$("#replyBtn").on("click", function() {
-			alert("댓글 작성하기 클릭")
-			/* $("#frm").attr("method", "post");
-			$("#frm").attr("action", "${cp }/replyWrite");
-			$("#frm").submit(); */
+		$("#replyWriteBtn").on("click", function() {
+			//필요 정보 
+			//원글replyBcode ok
+			//활성값 replyActive 0 set
+			$("#replyActive").val(0);
+			//내용 replyContent ok
+			//작성자 replyWriter ok
+			//날짜 servlet auto
+			$("#frm2").attr("method", "post");
+			$("#frm2").attr("action", "${cp }/replyWrite");
+			$("#frm2").submit();
+		});
+
+		$(".oneReply").on("click", function() {
+			alert("삭제 상태 설정됩니다.");
+			var rcode = $(this).data("rcode")
+			//삭제시 필요
+			//rcode
+			$("#replyRcode").val(rcode);
+			//상태값
+			$("#replyActive").val(1);
+
+			$("#frm2").attr("method", "post");
+			$("#frm2").attr("action", "${cp }/replyDelete");
+			$("#frm2").submit();
+
 		});
 
 	});
@@ -96,11 +119,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 						<!-- 넘겨줄 히든 값. -->
-						<form id="frm">
+						<form id="frm" enctype="multipart/form-data">
 							<!-- 사용자 아이디 값 -->
 							<input type="hidden" id="userid" name="userid"
 								value="${S_USER.userid }" />
 							<!-- 게시판 조회/수정시 사용 bcode, title, active-->
+							<!-- 현재글의 bcode -->
 							<input type="hidden" id="bcode" name="bcode"
 								value="${boardVo.bcode }" /> <input type="hidden" id="originno"
 								name="originno" value="${boardVo.originno }" /> <input
@@ -125,21 +149,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<div class="row">
 									<div class="col-sm-12">
 										<!-- summernote 추가 -->
-										실제 글번호 : ${boardVo.bcode }<br> 게시판번호 : ${boardVo.originno }<br>
-										글 번호 : ${boardVo.groupord } <br>
-
-
+										실제 글번호 : ${boardVo.bcode } / 게시판번호 : ${boardVo.originno } / 글
+										번호 : ${boardVo.groupord } <br>
 										<hr>
-										작성자 : <input value="${boardVo.writer }" readonly="readonly"/> <br>
-										제&nbsp;&nbsp;&nbsp;목 : <input type="text" id="title"
-											name="title" value="${boardVo.title }" readonly="readonly"/> 공개/삭제 <input
-											type="checkbox" id="active" name="active"
+										작성자 : <input value="${boardVo.writer }" readonly="readonly" />
+										<br> 제&nbsp;&nbsp;&nbsp;목 : <input type="text" id="title"
+											name="title" value="${boardVo.title }" readonly="readonly" />
+										공개/삭제 <input type="checkbox" id="active" name="active"
+											onclick="checkbox"
 											<c:choose>
 <c:when test="${boardVo.active == 0 }"> value="0" checked="checked"</c:when>
 <c:otherwise>value="1" </c:otherwise>
 </c:choose>>
 										<br> <br>
-										<textarea id="summernote" name="summernote" readonly="readonly">
+										<textarea id="summernote" name="summernote"
+											readonly="readonly">
 											${boardVo.content }
 										</textarea>
 										<hr>
@@ -161,16 +185,54 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<!-- card-body -->
 							<!-- card-footer -->
 						</form>
-						<div style="margin-left: 5%;">*** 댓글 보기 ***</div>
-						<div style="margin-left: 5%;">*** 댓글 작성 ***</div>
-						<form id="frm2" name="frm2" action="">
+						<form id="frm2" name="frm2">
+							<input type="hidden" id="replyBcode" name="replyBcode"
+								value="${boardVo.bcode }" /> <input type="hidden"
+								id="replyRcode" name="replyRcode" value="" /> <input
+								type="hidden" id="replyActive" name="replyActive" value="" /> <input
+								type="hidden" id="replyWriter" name="replyWriter"
+								value="${S_USER.userid }" />
+
+
+							<div style="margin-left: 5%;">*** 댓글 보기 ***</div>
+							<table class="table table-bordered">
+								<tr>
+									<th>작성자</th>
+									<th>댓글내용</th>
+									<th>작성시간</th>
+									<th>체크해제시 바로 삭제</th>
+								</tr>
+								<c:forEach items="${replyList }" var="replyList">
+									<tr class="oneReply" data-rcode="${replyList.rcode }">
+										<td>${replyList.writer }</td>
+										<td><c:choose>
+												<c:when test="${replyList.active == 0}">${replyList.content }</c:when>
+												<c:otherwise>삭제 처리 되었습니다.</c:otherwise>
+											</c:choose></td>
+										<td><fmt:formatDate value="${replyList.reg_datetime }"
+												pattern="yyyy-MM-dd HH:mm:ss" /></td>
+										<td><input type="checkbox" id="replyActiveBox"
+											name="replyActiveBox"
+											<c:if test="${S_USER.userid  != boardVo.writer}"> style="display: none;"</c:if>
+											<c:choose>
+<c:when test="${replyList.active == 0 }"> value="0" checked="checked"</c:when>
+<c:otherwise>value="1" </c:otherwise>
+</c:choose>>
+											<c:if test="${S_USER.userid  != boardVo.writer}">권한없음</c:if>
+										</td>
+									</tr>
+								</c:forEach>
+							</table>
+							<hr>
+							<div style="margin-left: 5%;">*** 댓글 작성 ***</div>
+
 							<div style="text-align: left;">
-								<textarea id="replycontext" name="replycontext" rows="3"
+								<textarea id="replyContent" name="replyContent" rows="3"
 									cols="120"></textarea>
 							</div>
 							<div style="text-align: right;">
-								<button type="submit" class="btn btn-primary" id="replyBtn"
-									name="replyBtn">댓글작성완료</button>
+								<button type="button" class="btn btn-primary" id="replyWriteBtn"
+									name="replyWriteBtn">댓글작성완료</button>
 							</div>
 							<br> <br>
 						</form>

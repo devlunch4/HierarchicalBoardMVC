@@ -12,6 +12,19 @@ public class ReplyVo {
 	private String writer; // 작성자
 	private Date reg_datetime; // 작성일
 
+	
+	
+	
+	public ReplyVo(int rcode, int bcode, int active, String content, String writer, Date reg_datetime) {
+		super();
+		this.rcode = rcode;
+		this.bcode = bcode;
+		this.active = active;
+		this.content = content;
+		this.writer = writer;
+		this.reg_datetime = reg_datetime;
+	}
+
 	public int getRcode() {
 		return rcode;
 	}

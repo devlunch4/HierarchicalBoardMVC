@@ -68,7 +68,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<div>
 								${S_USER.userid } 님 반갑습니다.<br> 접속 시간은 ${logintime } 입니다.<br>
 								화면이동은 상단바, 또는 좌측 상단을 눌러 왼쪽바로 이동해주세요~<br> 아래 게시판 링크를 클릭하면 해당
-								게시판으로 이동됩니다
+								게시판으로 이동됩니다<br><br>
+								게시판테이블내 게시판이 일종의 글로 인식이 되며 해당 게시판>글로 계층이 구분됩니다.
+							</div>
+							<hr>
+							<div>
+								*사용된 테이블 구조(이미지)<br>
+								<br> <img alt="#" src="../dbsqlSet/hBoard_shot.png">
 							</div>
 							<hr>
 							<div style="margin-left: 10%;">
