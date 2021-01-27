@@ -35,7 +35,10 @@ public interface BoardServiceI {
 
 	// 해당 게시판의 댓글 조회
 	List<ReplyVo> selectBoardReply(int bcode);
-	
+
 	// 댓글 등록
 	int replyWrite(ReplyVo replyVo);
+
+	// 댓글 삭제(실제론 활성값 수정)
+	int replyDelete(ReplyVo replyVo);
 }

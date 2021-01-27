@@ -47,13 +47,13 @@ public class BoardOneRead extends HttpServlet {
 		if (boardVo.getActive() == 1) {
 			resp.sendRedirect(req.getContextPath() + "/boardOneSelect?bcode=" + boardVo.getOriginno());
 		} else {
-			//해당 게시글 하나의 정보 세팅
+			// 해당 게시글 하나의 정보 세팅
 			req.setAttribute("boardVo", boardVo);
 
 			// 해당 게시글에 대한 댓글들 출력
 			req.setAttribute("replyList", replyList);
 
-			logger.debug("해당글 Bcode 값 :{}",boardVo.getBcode());
+			logger.debug("해당글 Bcode 값 :{}", boardVo.getBcode());
 			// 전송
 			req.getRequestDispatcher("/boardOneRead.jsp").forward(req, resp);
 

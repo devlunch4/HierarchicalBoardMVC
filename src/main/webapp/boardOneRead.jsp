@@ -49,7 +49,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			$("#frm").submit();
 		});
 
-		
 		//$("#replyBtn").on("click", function() {
 		//댓글 작성하기 클릭
 		$("#replyWriteBtn").on("click", function() {
@@ -65,26 +64,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			$("#frm2").submit();
 		});
 
-		$("#replyActiveBox").on("click", function() {
-			alert("삭제 상태 설정됩니다.")
+		$(".oneReply").on("click", function() {
+			alert("삭제 상태 설정됩니다.");
+			var rcode = $(this).data("rcode")
 			//삭제시 필요
 			//rcode
+			$("#replyRcode").val(rcode);
 			//상태값
-			$("#frm2").attr("method", "post");
-			$("#frm2").attr("action", "${cp }/replyUpdate");
-			$("#frm2").submit();
-			
-		});
+			$("#replyActive").val(1);
 
-		//댓글 삭제 체크박스 클릭
-		/* $("#replyActive").change(function () {
-			if($("#replyActive").is(":checked")){
-		        alert("체크박스 체크했음!");
-		    }else{
-		        alert("체크박스 체크 해제!");
-		    
+			$("#frm2").attr("method", "post");
+			$("#frm2").attr("action", "${cp }/replyDelete");
+			$("#frm2").submit();
+
 		});
-		 */
 
 	});
 </script>

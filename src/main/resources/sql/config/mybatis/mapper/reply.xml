@@ -7,10 +7,11 @@
 
 	<select id="selectBoardReply" resultType="replyVo"
 		parameterType="int">
-		SELECT * FROM hreply WHERE bcode = #{bcode} ORDER BY reg_datetime
+		SELECT * FROM hreply WHERE bcode = #{bcode} ORDER BY
+		reg_datetime
 	</select>
 
-	<insert id="replyWrite" parameterType="boardVo">
+	<insert id="replyWrite" parameterType="replyVo">
 		INSERT INTO hreply (
 		rcode,
 		bcode,
@@ -28,6 +29,12 @@
 		)
 	</insert>
 
+	<update id="replyDelete" parameterType="replyVo">
+		UPDATE hreply SET
+		active =
+		#{active} WHERE rcode=#{rcode}
+
+	</update>
 
 
 </mapper>

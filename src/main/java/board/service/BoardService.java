@@ -78,6 +78,10 @@ public class BoardService implements BoardServiceI {
 		return boardDao.replyWrite(replyVo);
 	}
 
-	
-	
+	// 댓글 삭제(실제론 활성값 수정)
+	@Override
+	public int replyDelete(ReplyVo replyVo) {
+		return boardDao.replyDelete(replyVo);
+	}
+
 }

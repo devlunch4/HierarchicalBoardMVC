@@ -137,4 +137,18 @@ public class BoardDao implements BoardDaoI {
 		return replyWriteCnt;
 	}
 
+	// 댓글 삭제(실제론 활성값 수정)
+	@Override
+	public int replyDelete(ReplyVo replyVo) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		int replyDeleteCnt = sqlSession.update("reply.replyDelete", replyVo);
+		if (replyDeleteCnt == 1) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return replyDeleteCnt;
+	}
+
 }
