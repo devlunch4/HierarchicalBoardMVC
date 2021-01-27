@@ -24,8 +24,8 @@
 					value="oracle.jdbc.driver.OracleDriver" />
 				<property name="url"
 					value="jdbc:oracle:thin:@localhost:1521:xe" />
-				<property name="username" value="PC20" />
-				<property name="password" value="java" />
+				<property name="username" value="PC01" />
+				<property name="password" value="oracle" />
 			</dataSource>
 		</environment>
 	</environments>
@@ -34,6 +34,7 @@
 		<mapper resource="sql/config/mybatis/mapper/users.xml" />
 		<mapper resource="sql/config/mybatis/mapper/board.xml" />
 		<mapper resource="sql/config/mybatis/mapper/reply.xml" />
+		<mapper resource="sql/config/mybatis/mapper/file.xml" />
 	</mappers>
 
 </configuration>

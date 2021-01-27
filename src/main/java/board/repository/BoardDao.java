@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import board.model.BoardVo;
+import board.model.FileVo;
 import board.model.ReplyVo;
 import common.model.PageVo;
 import db.MybatisUtil;
@@ -151,4 +152,16 @@ public class BoardDao implements BoardDaoI {
 		return replyDeleteCnt;
 	}
 
+	// 파일 정보 입력
+	public int insertFile(FileVo fileVo) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		int insertFileCnt = sqlSession.update("file.insertFile", fileVo);
+		if (insertFileCnt == 1) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return insertFileCnt;
+	}
 }

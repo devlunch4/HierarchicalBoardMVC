@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="file">
+
+	<select id="selectFile" resultType="fileVo">
+	</select>
+
+	<insert id="insertFile" parameterType="fileVo">
+		INSERT INTO hfile (
+		fcode,
+		bcode,
+		active,
+		fname,
+		fextension,
+		writer,
+		reg_datetime,
+		fclob
+		) VALUES (
+		SEQ_HFILE.NEXTVAL,
+		SEQ_HBOARD.CURRVAL,
+		0,
+		#{fname},
+		#{fextension},
+		#{writer},
+		sysdate,
+		#{fclob}
+		)
+	</insert>
+
+	<update id="updateFile" parameterType="replyVo">
+	</update>
+
+
+</mapper>
+

@@ -41,6 +41,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			$("#frm").submit();
 		});
 
+		//파일 추가
+
 	});
 </script>
 
@@ -111,8 +113,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										</textarea>
 
 										<!-- 파일구역 -->
-										<input type="file" id="file1" class="form-control" 
-											name="file1" accept=".gif, .jpg, .png" style="height: 37px;"  />
+
+
+										<input type="file" id="file1" class="form-control"
+											name="file1" style="height: 37px;" accept=".gif, .jpg, .png">
+										<!-- <input type="file" id="file2" class="form-control"
+											name="file2" style="height: 37px;" accept=".gif, .jpg, .png">
+										<input type="file" id="file3" class="form-control"
+											name="file3" style="height: 37px;" accept=".gif, .jpg, .png">
+										<input type="file" id="file4" class="form-control"
+											name="file4" style="height: 37px;" accept=".gif, .jpg, .png">
+										<input type="file" id="file5" class="form-control"
+											name="file5" style="height: 37px;" accept=".gif, .jpg, .png">
+ -->
+
+
 
 										<div style="text-align: right;">
 											<button type="button" class="btn btn-primary" id="golistBtn"

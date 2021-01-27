@@ -13,6 +13,22 @@ public class FileVo {
 	private Date reg_datetime; // 생성일
 	private String fclob; // 저장파일
 
+	
+	
+	
+	public FileVo(int fcode, int bcode, int active, String fname, String fextension, String writer, Date reg_datetime,
+			String fclob) {
+		super();
+		this.fcode = fcode;
+		this.bcode = bcode;
+		this.active = active;
+		this.fname = fname;
+		this.fextension = fextension;
+		this.writer = writer;
+		this.reg_datetime = reg_datetime;
+		this.fclob = fclob;
+	}
+
 	public int getFcode() {
 		return fcode;
 	}

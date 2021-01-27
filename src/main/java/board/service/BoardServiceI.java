@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import board.model.BoardVo;
+import board.model.FileVo;
 import board.model.ReplyVo;
 import common.model.PageVo;
 
@@ -41,4 +42,7 @@ public interface BoardServiceI {
 
 	// 댓글 삭제(실제론 활성값 수정)
 	int replyDelete(ReplyVo replyVo);
+
+	// 파일 정보 입력
+	int insertFile(FileVo fileVo);
 }

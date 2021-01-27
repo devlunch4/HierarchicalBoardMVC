@@ -1,7 +1,9 @@
 package board.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -9,13 +11,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import board.model.BoardVo;
+import board.model.FileVo;
 import board.service.BoardService;
 import board.service.BoardServiceI;
+import util.FileUtil;
 
 @MultipartConfig
 @WebServlet("/boardWrite")
@@ -92,10 +97,42 @@ public class BoardWrite extends HttpServlet {
 		// 글 등록용 vo 객체 생성
 		BoardVo boardVo = new BoardVo(parentBcode, originno, groupord, grouplayer, writer, title, content);
 
+		// 파일관련 설정
+		Part file1 = req.getPart("file1");
+		String filename = "";
+		String realFileName = "";
+		String fileExtension = "";
+		String fclob = "";
+		Date date = new Date();
+		int seqfthis = 0; // SEQ_HFILE.NEXTVAL
+		int seqbnow = 0; // 게시글 입력후 가져오기 SEQ_HBOARD.CURRVAL
+		if (file1.getSize() > 0) {
+			filename = FileUtil.getFileName(file1.getHeader("Content-Disposition"));
+			fileExtension = FileUtil.getFileExtension(filename);
+			// brown / bronw.png ?? 확장자 뒤의 "." 처리를 FileUtil.getFileExtension return 값에서 처리함
+			realFileName = UUID.randomUUID().toString() + fileExtension;
+			// 저장위치 지정
+			// file1.write("d:\\upload\\" + realFileName);
+		}
+		logger.debug("filename:{}, realFileName;{}", filename, realFileName);
+
 		int boardWriteCnt = boardService.boardWrite(boardVo);
-		if (boardWriteCnt == 1) {
-			// 정상수행
+
+		// SEQ_HFILE.NEXTVAL
+		// 게시글 입력후 가져오기 SEQ_HBOARD.CURRVAL
+		FileVo fileVo = new FileVo(seqfthis, seqbnow, 0, filename, fileExtension, writer, date, fclob);
+		logger.debug("BoardWrite 정상수행");
+
+		// 파일테이블 입력
+		int insertFileCnt = boardService.insertFile(fileVo);
+		if (insertFileCnt == 1) {
 			logger.debug("BoardWrite 정상수행");
+		} else {
+			logger.debug("BoardWrite 비정상수행");
+		}
+		if (boardWriteCnt == 1 && insertFileCnt == 1) {
+			// 정상수행
+			// 글작성-파일테이블 정상 수행 후
 			resp.sendRedirect(req.getContextPath() + "/boardOneSelect?bcode=" + parentBcode);
 
 		} else {

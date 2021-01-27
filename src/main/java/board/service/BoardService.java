@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import board.model.BoardVo;
+import board.model.FileVo;
 import board.model.ReplyVo;
 import board.repository.BoardDao;
 import board.repository.BoardDaoI;
@@ -82,6 +83,13 @@ public class BoardService implements BoardServiceI {
 	@Override
 	public int replyDelete(ReplyVo replyVo) {
 		return boardDao.replyDelete(replyVo);
+	}
+
+	// 파일 정보 입력
+	@Override
+	public int insertFile(FileVo fileVo) {
+		// TODO Auto-generated method stub
+		return boardDao.insertFile(fileVo);
 	}
 
 }
