@@ -16,7 +16,7 @@ public class FileUtil {
 				attr = attr.replace("filename=", "");
 				//
 				// "brown.jpg"
-				return attr.substring(1, attr.length() - 1);
+				return attr.substring(1, attr.length() - 5);
 			}
 		}
 		return "";

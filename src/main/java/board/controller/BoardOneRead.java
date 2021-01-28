@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import board.model.BoardVo;
+import board.model.FileVo;
 import board.model.ReplyVo;
 import board.service.BoardService;
 import board.service.BoardServiceI;
@@ -41,16 +42,23 @@ public class BoardOneRead extends HttpServlet {
 
 		// 하나의 정보를 확인
 		BoardVo boardVo = (BoardVo) boardService.boardOneRead(bcode);
+		// 파일 테이블 정보 확인
+		FileVo fileVo = boardService.selectFile(bcode);
+		
 
 		// 댓글 관련 시작
 		List<ReplyVo> replyList = boardService.selectBoardReply(bcode);
 		logger.debug("댓글 목록내 댓글 수 : {}", replyList.size());
+		
 
 		if (boardVo.getActive() == 1) {
 			resp.sendRedirect(req.getContextPath() + "/boardOneSelect?bcode=" + boardVo.getOriginno());
 		} else {
 			// 해당 게시글 하나의 정보 세팅
 			req.setAttribute("boardVo", boardVo);
+			
+			//해당 게시글의 파일테이블 정보 세팅
+			req.setAttribute("fileVo", fileVo);
 
 			// 해당 게시글에 대한 댓글들 출력
 			req.setAttribute("replyList", replyList);

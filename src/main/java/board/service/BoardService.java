@@ -92,4 +92,10 @@ public class BoardService implements BoardServiceI {
 		return boardDao.insertFile(fileVo);
 	}
 
+	// 선택된 게시글의 파일정보 가져오기
+	@Override
+	public FileVo selectFile(int bcode) {
+		return boardDao.selectFile(bcode);
+	}
+
 }

@@ -167,6 +167,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											${boardVo.content }
 										</textarea>
 										<hr>
+
+										<!-- 파일 정보 보여주는 공간 -->
+										<!-- <input type="file" id="file1" class="form-control"
+											name="file1" style="height: 37px;" accept=".gif, .jpg, .png"> -->
+										파일코드: <label>${fileVo.fcode }</label> , 파일명 : <label>${fileVo.fname }</label>
+										, 파일공개/삭제 <input type="checkbox" id="fileactive"
+											name="fileactive" onclick="checkbox"
+											<c:choose>
+<c:when test="${fileVo.active == 0 }"> value="0" checked="checked"</c:when>
+<c:otherwise>value="1" </c:otherwise>
+</c:choose>>
+
+										<hr>
 										<div style="text-align: right;">
 											<button type="button" class="btn btn-primary" id="golistBtn"
 												name="golistBtn"

@@ -5,9 +5,6 @@
 
 <mapper namespace="file">
 
-	<select id="selectFile" resultType="fileVo">
-	</select>
-
 	<insert id="insertFile" parameterType="fileVo">
 		INSERT INTO hfile (
 		fcode,
@@ -33,6 +30,9 @@
 	<update id="updateFile" parameterType="replyVo">
 	</update>
 
+	<select id="selectFile" resultType="fileVo" parameterType="int">
+		SELECT * FROM hfile WHERE bcode= #{value}
+	</select>
 
 </mapper>
 

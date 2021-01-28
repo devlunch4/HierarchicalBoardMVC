@@ -153,6 +153,7 @@ public class BoardDao implements BoardDaoI {
 	}
 
 	// 파일 정보 입력
+	@Override
 	public int insertFile(FileVo fileVo) {
 		SqlSession sqlSession = MybatisUtil.getSqlSession();
 		int insertFileCnt = sqlSession.update("file.insertFile", fileVo);
@@ -163,5 +164,14 @@ public class BoardDao implements BoardDaoI {
 		}
 		sqlSession.close();
 		return insertFileCnt;
+	}
+
+	// 선택된 게시글의 파일정보 가져오기
+	@Override
+	public FileVo selectFile(int bcode) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		FileVo fileVo = sqlSession.selectOne("file.selectFile",bcode);
+		sqlSession.close();
+		return fileVo;
 	}
 }

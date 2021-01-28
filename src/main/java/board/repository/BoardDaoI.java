@@ -48,4 +48,7 @@ public interface BoardDaoI {
 	// 파일 정보 입력
 	int insertFile(FileVo fileVo);
 
+	// 선택된 게시글의 파일정보 가져오기
+	FileVo selectFile(int bcode);
+
 }
