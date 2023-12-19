@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.2.3</version>
+			<version>1.2.13</version>
 			<!-- 제거를 하자!! 배포를 위해서!! <scope>test</scope> -->
 		</dependency>
 
